@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/bootstrap4.min.css">
+=======
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+>>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -22,6 +26,7 @@
     <!-- Card menggunakan Bootstrap -->
     <div class="card custom-card">
         <div class="card-body">
+<<<<<<< HEAD
             @if(session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
@@ -37,6 +42,20 @@
                 </div>
 
                 <button type="submit" class="btn submit">Login</button>
+=======
+            <h5 class="card-title title" style="color: #EBCDC3;">Log In</h5>
+            <form>
+                <div class="form-group ">
+                    <input type="text" class="form-control login" id="nip" placeholder="NIP">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control login" id="password" placeholder="PASSWORD">
+                </div>
+
+                <button type="submit" class="btn submit">Submit</button>
+
+>>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
             </form>
         </div>
     </div>

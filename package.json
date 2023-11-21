@@ -9,8 +9,11 @@
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.8.0",
         "vite": "^4.0.0"
+<<<<<<< HEAD
     },
     "dependencies": {
         "sweetalert2": "^11.10.0"
+=======
+>>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
     }
 }

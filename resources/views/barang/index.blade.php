@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Stok Barang')
 @section('content')
-<a href="{{ route('tambahbarangview') }}" class="btn btn-lg active ml-auto p-3 " role="button" aria-pressed="true" style="background: #EBCDC3; border: 1px #CDCDCD solid; width: 25%; height: 100%; color: white;">Masukkan Stok Masuk</a>
+<a href="{{ route('tambahbarangview') }}" class="btn btn-lg active ml-auto p-3 " role="button" aria-pressed="true" style="background: #EBCDC3; border: 1px #CDCDCD solid; width: 25%; height: 100%;">Masukkan Stok Masuk</a>
 </div>
     <div class="container-sm tabel_background">
         <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
@@ -42,7 +42,7 @@
                 @endforeach
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" class="paginate">
             <ul class="pagination justify-content-end">
                 @if($spareparts->currentPage() > 1)
                 <li class="page-item">

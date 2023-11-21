@@ -26,9 +26,6 @@
     <hr style="background-color: #936151;">
     <ul class="nav flex-column" style="text-align: left;">
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: #936151 !important; ">Setting</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="#">Pengaturan</a>
         </li>
         <li class="nav-item">

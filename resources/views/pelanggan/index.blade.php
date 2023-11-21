@@ -1,12 +1,10 @@
 @extends('layouts.main')
 @section('title', 'Data Pelanggan')
 @section('content')
-    <a href="{{ route('tambahpelangganview') }}" class="btn btn-lg active ml-auto p-3" role="button" aria-pressed="true"
-        style="background: #EBCDC3; border: 1px #CDCDCD solid;  color: white;">Tambah User</a>
     <div class="container-sm tabel_background">
         <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
             <div class="col-md-5">
-                <p>Daftar User</p>
+                <p>Daftar Pelanggan</p>
             </div>
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">

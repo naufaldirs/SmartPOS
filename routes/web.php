@@ -52,10 +52,12 @@ Route::middleware(['web', 'auth.session'])->group(function () {
     Route::get('/hapus-pelanggan/{id_pelanggan}', [PelangganController::class, 'hapuspelanggan'])->name('hapuspelanggan');
     Route::get('/tambah-pelanggan', [PelangganController::class, 'tambahpelangganview'])->name('tambahpelangganview');
     Route::post('/tambah-pelanggan', [PelangganController::class, 'tambahpelanggan'])->name('tambahpelanggan');
-
+    Route::get('/input-pelanggan', [PelangganController::class, 'tambahpelanggankasirview'])->name('tambahpelanggankasirview');
+    Route::post('/input-pelanggan', [PelangganController::class, 'tambahpelanggankasir'])->name('tambahpelanggankasir');
     Route::get('/data-penjualan', [PenjualanController::class, 'index'])->name('indexpenjualan');
-    Route::get('/tambah-penjualan', [PenjualanController::class, 'create'])->name('tambahpenjualan');
-    Route::post('/tambah-penjualan', [PenjualanController::class, 'store']);
+    Route::get('/tambah-penjualan', [PenjualanController::class, 'create'])->name('tambahpenjualanview');
+    Route::post('/tambah-penjualan', [PenjualanController::class, 'store'])->name('tambahpenjualan');
+
     Route::get('penjualan/{no_nota}/ubah-penjualan', [PenjualanController::class, 'edit'])->name('ubahpenjualan');
     Route::put('penjualan/{no_nota}', [PenjualanController::class, 'update'])->name('prosesubahpenjualan');
     Route::get('/hapuspenjualan/{no_nota}', [PenjualanController::class, 'destroy'])->name('hapuspenjualan');

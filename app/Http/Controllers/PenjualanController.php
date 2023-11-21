@@ -21,7 +21,7 @@ class PenjualanController extends Controller
        ->get(); // Retrieve all records
 
    // Manually paginate the results
-   $perPage = 10; // Adjust the number of items per page
+   $perPage = 5; // Adjust the number of items per page
    $currentPage = request()->get('page', 1);
    $offset = ($currentPage - 1) * $perPage;
    $slicedHistoryPayments = array_slice($historyPayments->toArray(), $offset, $perPage);

@@ -18,6 +18,9 @@ class PelangganController extends Controller
         return view('pelanggan.tambah');
     }
 
+    public function tambahpelanggankasirview() {
+        return view('pelanggan.tambahkasir');
+    }
     public function tambahpelanggan(Request $request) {
         $request->validate([
             'nama_pelanggan' => 'required',
@@ -28,6 +31,18 @@ class PelangganController extends Controller
         Pelanggan::create($request->all());
 
         return redirect()->route('pelanggan')->with('success', 'Pelanggan created successfully.');
+    }
+
+    public function tambahpelanggankasir(Request $request) {
+        $request->validate([
+            'nama_pelanggan' => 'required',
+            'no_telp' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        Pelanggan::create($request->all());
+
+        return redirect()->back()->with('success', 'Pelanggan created successfully.');
     }
 
     public function ubahpelangganview($id_pelanggan) {

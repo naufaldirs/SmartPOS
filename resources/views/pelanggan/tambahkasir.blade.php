@@ -2,7 +2,7 @@
 @section('title', 'Tambah Pelanggan')
 @section('content')
 <div class="container-sm tabel_background">
-<form action="{{ route('tambahpelanggan') }}" method="POST">
+<form action="{{ route('tambahpelanggankasir') }}" method="POST">
   @csrf
   @if(session('success'))
   <div class="alert alert-success">{{ session('success') }}</div>

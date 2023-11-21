@@ -37,6 +37,10 @@ return [
             'route' => 'barang',
         ],
         [
+            'label' => 'Data Pelanggan',
+            'route' => 'pelanggan',
+        ],
+        [
             'label' => 'History Pembayaran',
             'route' => 'historypembayaran',
         ],
@@ -56,8 +60,16 @@ return [
 // 4.	Data penjulan
     'kasir' => [
         [
-            'label' => 'Data Pelanggan',
-            'route' => 'pelanggan',
+            'label' => 'Stok Sparespart',
+            'route' => 'barang',
+        ],
+        [
+            'label' => 'Input Customer',
+            'route' => 'tambahpelanggankasirview',
+        ],
+        [
+            'label' => 'Transaksi Kasir',
+            'route' => 'tambahpenjualanview',
         ],
         [
             'label' => 'Data Penjualan',

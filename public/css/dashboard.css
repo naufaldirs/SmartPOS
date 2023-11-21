@@ -2,6 +2,13 @@ body {
   background-color: whitesmoke;
   font-weight: 600; 
 }
+.btn{
+  color: black;
+}
+.page-item .page-link {
+  background-color: #DCB5A9;
+  color: black;
+}
 /* Sesuaikan dengan lebar dan tinggi yang diinginkan */
 .sidebar {
         width: 100%;
@@ -21,7 +28,7 @@ body {
   
 .sidebar a {
         text-decoration: none;
-        color: white; /* Warna teks link-menu */
+        color: black!important; /* Warna teks link-menu */
         display: block;
         margin-bottom: 2px;
         font-weight: 600; 
@@ -46,6 +53,7 @@ header h1 {
       /* Menggeser konten utama ke bawah untuk memberi ruang pada header yang fixed */
 main {
         margin-top: 60px; /* Sesuaikan sesuai dengan tinggi header */
+        margin-left: 20%;
       }
 
 .role {
@@ -85,6 +93,7 @@ main {
   background-color: white;
   width: 100%;
   height: 100%;
+  margin-right: 16px;
   margin-top: 10px;
 }
 @media (max-width: 767px) {
@@ -139,7 +148,6 @@ input {
 }
 
 .sidebar a:hover {
-  color: black;
   background-color: #B48475;
   border-radius: 15px;
 }
@@ -168,8 +176,8 @@ input {
 #main {
   transition: margin-left .5s;
   padding: 16px;
-  margin-left: auto;
 }
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

@@ -41,7 +41,7 @@
       </tbody>
     </table>
     <div class="p-12 pt-3 pb-3 mt-6 d-flex align-items-center">
-      <a href="{{ route('manajemenuser', ['id_user' => $user->id_user]) }}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Batal</a>
+      <a href="{{ route('manajemenuser') }}" class="btn btn-secondary  btn-lg active" role="button" aria-pressed="true">Kembali</a>
       <a href="{{ route('tambahdetailuser', ['id_user' => $user->id_user]) }}" class="btn btn-primary ml-auto btn-lg active" role="button" aria-pressed="Simpan">Edit Profile</a>
       </div>
   </div>

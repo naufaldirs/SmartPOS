@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Penjualan;
+use App\Models\PenjualanDetail;
 use Illuminate\Database\Seeder;
 
 
@@ -17,6 +19,12 @@ class DatabaseSeeder extends Seeder
         //  \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
+            UserDetailSeeder::class,
+            SparepartSeeder::class,
+            PelangganSeeder::class,
+            PenjualanSeeder::class,
+            PenjualanDetailSeeder::class,
+
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

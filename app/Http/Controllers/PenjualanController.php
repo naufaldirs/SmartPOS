@@ -7,6 +7,7 @@ use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use App\Models\PenjualanDetail;
 use App\Models\Sparepart;
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -59,10 +60,13 @@ class PenjualanController extends Controller
     }
     public function create()
     {
-        $pelanggan = Pelanggan::all();
-        $users = User::all();
+        $pelanggans = Pelanggan::all();
+        $user = session('id_user', '');
+        // Mengambil data user_detail terkait
+        $users = DB::table('user_detail')->where('id_user', $user)->first();
 
-        return view('penjualan.tambah', compact('pelanggan', 'users'));
+
+        return view('penjualan.tambah', compact('pelanggans', 'users'));
     }
 
     public function store(Request $request)
@@ -70,16 +74,21 @@ class PenjualanController extends Controller
         $no_nota = $request->input('no_nota');
         $request->validate([
             'no_nota' => 'required|integer',
-            'no_po' => 'required|string',
+            'tgl_nota' => 'required',
             'pelanggan' => 'required|exists:pelanggan,id_pelanggan',
-            'users' => 'required|exists:users,id_user',
         ]);
+
+        $user = session('id_user', '');
+        $users = DB::table('user_detail')->where('id_user', $user)->first();
+
+
 
         $penjualan = new Penjualan();
         $penjualan->no_nota = $request->input('no_nota');
+        $penjualan->no_nota = $request->input('tgl_nota');
         $penjualan->total = 0;
         $penjualan->id_pelanggan = $request->input('pelanggan');
-        $penjualan->id_user = $request->input('users');
+        $penjualan->id_user = $users;
         $penjualan->save();
 
         return redirect()->route('indexdetail', ['no_nota' => $no_nota])
@@ -138,11 +147,23 @@ class PenjualanController extends Controller
    // Fetch barang data
    $barangData = DB::table('sparepart')->get();
 
+
    return view('detailbarang.detailtambah', compact('penjualanData', 'barangData','no_nota'));
     }
 
 
+    public function transaksikasirview() {
 
+    // Fetch barang data
+    $spareparts = DB::table('sparepart')->get();
+ 
+        return view('transaksi.index', compact('spareparts'));
+       }
+
+    public function getdataTransaksi() {
+        $spareparts = Sparepart::all();
+        return response()->json(['sparepart' => $spareparts]);
+    }
     public function simpandetail(Request $request, $no_nota)
     {
 

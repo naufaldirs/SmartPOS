@@ -17,18 +17,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-<<<<<<< HEAD
     protected $primaryKey = 'id_user';
     protected $fillable = [
         'nip',
         'password',
         'role',
-=======
-    protected $fillable = [
-        'nip',
-        'password',
-        'jabatan',
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
     ];
 
     /**
@@ -37,10 +30,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-<<<<<<< HEAD
-=======
-        'password',
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
         'remember_token',
     ];
 
@@ -50,7 +39,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-<<<<<<< HEAD
         'password' => 'hashed',
     ];
 
@@ -63,9 +51,4 @@ public function penjualan() {
 
 } 
     
-=======
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
 }

@@ -41,11 +41,11 @@ return [
             'route' => 'pelanggan',
         ],
         [
-            'label' => 'History Pembayaran',
+            'label' => 'Riwayat Pembayaran',
             'route' => 'historypembayaran',
         ],
         [
-            'label' => 'Manajemen User',
+            'label' => 'Manajemen Pengguna',
             'route' => 'manajemenuser',
         ],
         // ... tambahkan modul Admin lainnya

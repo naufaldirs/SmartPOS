@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'id_user' => $index,
                 'nip' => $faker->unique()->numberBetween(1, 999),
                 'password' => Hash::make('123'), // Ganti dengan kata sandi yang diinginkan
-                'role' => $faker->randomElement(['admin', 'akuntan', 'kasir', 'manager']),
+                'role' => $faker->randomElement(['admin', 'akuntan', 'kasir', 'manajer']),
                 'remember_token' => Str::random(10)
             ]);
         }

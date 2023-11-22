@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Transaksi')
+@section('title', 'Transaksi Kasir')
 @section('content')
 <div class="container-sm tabel_background">
     <h2>Tambah Penjualan</h2>
@@ -20,10 +20,10 @@
     </tr>
     <tr>
         <div class="form-group">
-          <th><label for="pelanggan">Jabatan</label></th>
+          <th><label for="pelanggan">Pelanggan</label></th>
             <td>
                 <select name="pelanggan" id="pelanggan" class="form-control">
-                    @foreach ($pelanggan as $pelanggan)
+                    @foreach ($pelanggans as $pelanggan)
                         <option value="{{ $pelanggan->id_pelanggan }}">{{ $pelanggan->nama_pelanggan }}</option>
                     @endforeach
                 </select>
@@ -32,15 +32,8 @@
       </tr>
       <tr>
         <div class="form-group">
-          <th><label for="user">Jabatan</label></th>
-                <div class="form-group">
-                        <select name="user" id="user">
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id_user }}">{{ $user->nama_user }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </div>
+          <th><label for="users">Petugas</label></th>
+            <td><input type="text" class="form-control" placeholder="{{ $users->nama }}" value="{{ $users->nama  }}" readonly></td>
       </div>
       </tr>
       </table>
@@ -49,5 +42,5 @@
         </div>
     </form>
     </div>
-
+@endsection
 

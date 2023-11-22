@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,19 +12,12 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
 
-=======
-use Illuminate\Http\Request;
-
-class HomeController extends Controller
-{
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
     public function home() {
         return view('home');
     }
     public function loginview() {
         return view('login.index');
     }
-<<<<<<< HEAD
 
     public function authenticate(Request $request)
     {
@@ -61,6 +53,3 @@ public function logout(Request $request) {
     return redirect('/login');
 }
 }
-=======
-}
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c

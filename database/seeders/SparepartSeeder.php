@@ -2,15 +2,9 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-=======
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
 class SparepartSeeder extends Seeder
 {
     /**
@@ -18,19 +12,19 @@ class SparepartSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
         $faker = Faker::create();
 
         foreach (range(1, 50) as $index) {
+            $harga = $faker->numberBetween(1000, 100000);
+            $stok = $faker->numberBetween(1, 100);
+    
             DB::table('sparepart')->insert([
                 'kd_sparepart' => $index,
-                'nama_sparepart' =>  $faker->words(2, true),
-                'harga' => $faker->numberBetween(1000, 100000),
-                'stok' => $faker->numberBetween(1, 100),
+                'nama_sparepart' => $faker->words(2, true),
+                'harga' => $harga,
+                'stok' => $stok,
+                'total_harga' => $harga * $stok,
             ]);
-        }
-=======
-        //
->>>>>>> 41f3074920338fa150f92d37fa962d2bc1706f0c
     }
+}
 }

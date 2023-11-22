@@ -15,7 +15,7 @@ class PenjualanSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 20) as $index) {
             DB::table('penjualan')->insert([
                 'no_nota' => $index,
                 'tgl_nota' => $faker->date,

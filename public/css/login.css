@@ -1,0 +1,43 @@
+body {
+    background-image: url("/img/oke.jpg");
+}
+
+.custom-card {
+    width: 80%; /* Lebar card disesuaikan dengan lebar viewport */
+    max-width: 923px; /* Maksimum lebar card */
+    margin: auto; /* Agar card berada di tengah */
+    margin-top: 120px; /* Jarak dari atas halaman (sesuaikan sesuai kebutuhan) */
+    border-radius: 15px; /* Sudut bundar */
+    padding-bottom: 2%;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.custom-card input {
+    width: 50%; /* Lebar input diatur menjadi 100% */
+    height: 50px; /* Tinggi input */
+    display: block;
+    margin: 15px auto; /* Jarak antara elemen input */
+}
+
+.custom-card .btn {
+    width: 50%; /* Lebar tombol diatur menjadi 100% */
+    height: 50px; /* Tinggi tombol */
+    display: block;
+    margin: 15px auto; /* Jarak antara elemen input dan tombol */
+}
+.submit {
+    background-color: #EBCDC3; 
+    border: 1px solid #5A5959; 
+    border-radius: 15px;
+}
+.login{
+    border: 1px solid #5A5959; 
+    border-radius: 15px;
+}
+

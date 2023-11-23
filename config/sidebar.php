@@ -69,7 +69,7 @@ return [
         ],
         [
             'label' => 'Transaksi Kasir',
-            'route' => 'tambahpenjualanview',
+            'route' => 'transaksikasirview',
         ],
         [
             'label' => 'Data Penjualan',

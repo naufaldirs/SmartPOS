@@ -78,9 +78,6 @@ class PenjualanController extends Controller
             'pelanggan' => 'required|exists:pelanggan,id_pelanggan',
         ]);
 
-        $user = session('id_user', '');
-        $users = DB::table('user_detail')->where('id_user', $user)->first();
-
 
 
         $penjualan = new Penjualan();
@@ -88,10 +85,10 @@ class PenjualanController extends Controller
         $penjualan->no_nota = $request->input('tgl_nota');
         $penjualan->total = 0;
         $penjualan->id_pelanggan = $request->input('pelanggan');
-        $penjualan->id_user = $users;
+        $penjualan->id_user = $request->input('users');
         $penjualan->save();
 
-        return redirect()->route('indexdetail', ['no_nota' => $no_nota])
+        return redirect()->route('transaksikasirview', ['no_nota' => $no_nota])
             ->with('success', 'Data penjualan berhasil ditambahkan.');
     }
     public function edit($no_nota)
@@ -135,115 +132,91 @@ class PenjualanController extends Controller
 
     return view('detailbarang.index', compact('penjualan', 'detail_barang','no_nota'));
     }
-    public function tambahdetail($no_nota)
+    public function tambahdetailview($no_nota)
     {
        // Fetch user data based on no_nota
-       $penjualanData = DB::table('penjualan')
+       $penjualans = DB::table('penjualan')
        ->join('users', 'penjualan.id_user', '=', 'users.id_user')
        ->join('pelanggan', 'penjualan.id_pelanggan', '=', 'pelanggan.id_pelanggan')
        ->where('penjualan.no_nota', $no_nota)
        ->select('penjualan.no_nota', 'penjualan.no_po', 'users.nama_users', 'pelanggan.nama_pelanggan', 'penjualan.subtotal_total')
        ->first();
-   // Fetch barang data
-   $barangData = DB::table('sparepart')->get();
 
-
-   return view('detailbarang.detailtambah', compact('penjualanData', 'barangData','no_nota'));
+   return view('detailbarang.detailtambah', compact('penjualans', 'no_nota'));
     }
 
 
     public function transaksikasirview() {
+        $pelanggans = Pelanggan::all();
+        $user = session('id_user', '');
+        // Mengambil data user_detail terkait
+        $users = DB::table('user_detail')->where('id_user', $user)->first();
 
     // Fetch barang data
     $spareparts = DB::table('sparepart')->get();
  
-        return view('transaksi.index', compact('spareparts'));
+        return view('transaksi.index', compact('spareparts','pelanggans','users'));
        }
 
-    public function getdataTransaksi() {
-        $spareparts = Sparepart::all();
-        return response()->json(['sparepart' => $spareparts]);
-    }
-    public function simpandetail(Request $request, $no_nota)
+
+    public function transaksikasir(Request $request)
     {
 
-        $qty = intval($request->input('qty'));
-        $kd_sparepart = $request->input('barang');
-        
-        $barang = Sparepart::find($kd_sparepart);
-        $harga = $barang->harga;
+        $request->validate([
+            'no_nota' => 'required|integer',
+            'tgl_nota' => 'required',
+            'pelanggan' => 'required|exists:pelanggan,id_pelanggan',
+            'users' => 'required|exists:users,id_user',
+        ]);
 
-        $subtotal = intval($request->input('subtotal'));
+        $penjualanData = [
+            'no_nota'=> $request->input('no_nota'),
+            'tgl_nota' => now(),
+            'total' => $request->input('total'),
+            'bayar'=> $request->input('bayar'),
+            'pembayaran'=> $request->input('pembayaran'),
+            'kembali'=> $request->input('kembali'),
+            'pelanggan' =>$request->input('pelanggan'),
+            'users' => $request->input('user'),
+            // Tambahkan field lainnya
+        ];
 
-        // Check if the selected barang already exists in detail_barang table
-        $result_check = DB::table('penjualan_detail')
-        ->where('no_nota', $no_nota)
-        ->where('kd_sparepart', $kd_sparepart)
-        ->count();
+        $penjualanDetailData = [
+            [
+                'kd_sparepart' => $request->input('kd_sparepart'),
+                'qty' => $request->input('qty'),
+                'subtotal' => $request->input('subtotal'),
+                'no_nota'=> $request->input('no_nota'),
 
-    if ($result_check > 0) {
-        // Item already exists in the cart, show an error message
-        return redirect()->back()->with('error_message', 'Barang sudah ada dalam Keranjang.');
-    } else {
-                // Insert data into detail_barang table
-                DB::table('penjualan_detail')->insert([
-                    'qty' => $qty,
-                    'subtotal' => $subtotal,
-                    'kd_sparepart' => $kd_sparepart,
-                    'no_nota' => $no_nota,
-                ]);
-        
-                // Update subtotal_total in penjualan table
-                $this->updatesubtotalTotal($no_nota);
-        
-                return redirect()->route('indexdetail', ['no_nota' => $no_nota])
-                ->with('harga', $harga)
-                ->with('subtotal', $subtotal);
+                // Tambahkan field lainnya
+            ],
+            // Tambahkan data PenjualanDetail lainnya
+        ];
+
+        try {
+            // Gunakan transaksi database untuk menjamin integritas data
+            DB::transaction(function () use ($penjualanData, $penjualanDetailData) {
+                // Buat instance Penjualan
+                $penjualan = Penjualan::create($penjualanData);
+
+                // Hubungkan ID Penjualan ke setiap record PenjualanDetail
+                $penjualanDetails = collect($penjualanDetailData)->map(function ($detail) use ($penjualan) {
+                    return new PenjualanDetail(array_merge($detail, ['no_nota' => $penjualan->no_nota]));
+                    
+                });
+
+                // Masukkan rekaman PenjualanDetail secara massal
+                PenjualanDetail::insert($penjualanDetails->toArray());
+            });
+
+            // return redirect()->route('indexpenjualan')->with('success', 'Transaksi berhasil.');
+        } catch (\Exception $e) {
+            // return redirect()->route('transakasikasirview')->with('error', 'Transaksi gagal. Error: ' . $e->getMessage());
+        }
+
     }
 
 
-    }
-
-    private function updatesubtotalTotal($no_nota)
-    {
-        $total_subtotal = DB::table('penjualan_detail')
-            ->where('no_nota', $no_nota)
-            ->sum('subtotal');
-
-        DB::table('penjualan')
-            ->where('no_nota', $no_nota)
-            ->update(['subtotal_total' => $total_subtotal]);
-    }
-    public function getHargaSatuan($kd_sparepart)
-{
-    $hargaSatuan = Sparepart::where('kd_sparepart', $kd_sparepart)->value('harga');
-    return response()->json(['harga' => $hargaSatuan]);
-}
-
-public function hapusdetail($no_nota, $kd_sparepart)
-{
-    // Delete record from detail_barang table
-    $deleted = DB::table('penjualan_detail')
-        ->where('no_nota', $no_nota)
-        ->where('kd_sparepart', $kd_sparepart)
-        ->delete();
-
-        
-    if ($deleted) {
-        // Update subtotal_total in penjualan table
-        $total_subtotal = DB::table('penjualan_detail')
-            ->where('no_nota', $no_nota)
-            ->sum('subtotal');
-
-        DB::table('penjualan')
-            ->where('no_nota', $no_nota)
-            ->update(['subtotal_total' => $total_subtotal]);
-
-        return redirect()->route('indexdetail', ['no_nota' => $no_nota])->with('success_message', 'Entry berhasil dihapus.');
-    } else {
-        return redirect()->route('indexdetail', ['no_nota' => $no_nota])->with('error_message', 'Gagal menghapus entry.');
-    }
-}
 
 public function showPrintout($no_nota)
 {

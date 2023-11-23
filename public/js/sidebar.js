@@ -13,25 +13,27 @@ var rowCount = 1; // Variable to track the row count
 
 // Function to add new row to the table
 function addRow() {
-    // Get selected sparepart data from the dropdown
-    var selectedSparepart = $("#spareparts option:selected");
-    var namaSparepart = selectedSparepart.text().split(" - ")[0];
-    var hargaSparepart = selectedSparepart.data("harga");
+  event.preventDefault();
+  // Get selected sparepart data from the dropdown
+  var selectedSparepart = $("#spareparts option:selected");
+  var kdSparepart = selectedSparepart.val();
+  var namaSparepart = selectedSparepart.text().split(" - ")[0];
+  var hargaSparepart = selectedSparepart.data("harga");
 
-    // Create a new row with the extracted data
-    var newRow = '<tr>' +
-        '<th scope="row">' + rowCount++ + '</th>' + // Increment the row count
-        '<td id="namaSparepart">' + namaSparepart + '</td>' +
-        '<td id="hargaSparepart">' + hargaSparepart + '</td>' +
-        '<td><input type="text" class="qty-input"></td>' +
-        '<td><input type="number" name="subtotal" readonly class="subtotal-input"> </td>' +
-        '<td><a href="#" class="btn btn-danger btn-lg active delete-row" role="button" aria-pressed="true"><i class="fa fa-minus-square" style="color:red"></i></a></td>' +
-        '</tr>';
+  // Create a new row with the extracted data and set kd_sparepart as a data attribute
+  var newRow = '<tr data-kd-sparepart="' + kdSparepart + '">' +
+      '<input type="hidden" name="kd_sparepart[]" value="' + kdSparepart + '">' +
+      '<th scope="row">' + rowCount++ + '</th>' + // Increment the row count
+      '<td id="namaSparepart">' + namaSparepart + '</td>' +
+      '<td id="hargaSparepart">' + hargaSparepart + '</td>' +
+      '<td><input type="text" name="qty[]" class="qty-input"></td>' +
+      '<td><input type="number" name="subtotal[]" readonly class="subtotal-input"> </td>' +
+      '<td><a href="#" class="btn btn-danger btn-lg active delete-row" role="button" aria-pressed="true"><i class="fa fa-minus-square" style="color:red"></i></a></td>' +
+      '</tr>';
 
-    // Append the new row to the table
-    $('#barangTable tbody').append(newRow);
+  // Append the new row to the table
+  $('#barangTable tbody').append(newRow);
 }
-
 // Function to calculate subtotal and update the row
 function calculateSubtotal() {
     var qty = parseInt($(this).val());

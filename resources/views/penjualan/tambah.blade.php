@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-sm tabel_background">
     <h2>Tambah Penjualan</h2>
-<form action="{{ route('tambahpelanggan') }}" method="POST">
+<form action="{{ route('tambahpenjualan') }}" method="POST">
     @csrf
       <table class="table tableku">
         <tr>
@@ -15,7 +15,7 @@
       <tr>
       <div class="form-group">
         <th><label for="tgl_nota">Tanggal Order</label></th>
-        <td><input type="text" class="form-control" name="tgl_nota" id="tgl_nota"></td>
+        <td><input type="date" class="form-control" name="tgl_nota" id="tgl_nota"></td>
     </div>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
       <tr>
         <div class="form-group">
           <th><label for="users">Petugas</label></th>
-            <td><input type="text" class="form-control" placeholder="{{ $users->nama }}" value="{{ $users->nama  }}" readonly></td>
+            <td><input type="text" class="form-control" name="users" {{ $users->nama }}" value="{{ $users->nama  }}" readonly></td>
       </div>
       </tr>
       </table>

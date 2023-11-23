@@ -7,23 +7,49 @@
         </div>
     </div>
     <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
+
+        </div>
+ 
+
+        <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
         <tr>
             <th>Barang : </th>
             <td>
-                <select name="spareparts" id="spareparts" class="form-control" style="width:50%">
+                    <select name="spareparts" id="spareparts" class="form-control" style="width:50%">
                     @foreach ($spareparts as $sparepart)
                         <option value="{{ $sparepart->kd_sparepart }}" id="spareparts" data-harga="{{ $sparepart->harga }}">{{ $sparepart->nama_sparepart }} - {{ $sparepart->harga }}</option>
                     @endforeach
                 </select>
-                <button onclick="return addRow()" class="btn btn-primary  btn-lg active" role="button" aria-pressed="Simpan">Save</button>            </td>
+                <button onclick="addRow(event); return false;" class="btn btn-primary  btn-lg active" role="button" aria-pressed="Simpan">Save</button></td>
+            </div>
         </tr>
+
+  <form action="{{ route('transaksikasir') }}" method="POST">
+    @csrf
+    <tr>
+        <div class="form-group">
+            <th><label for="no_nota">No Nota</label></th>
+            <td><input type="text" name="no_nota" id="" class="form-control"></td>
         </div>
-    <form action="" method="POST">
-        @method('put')
+    </tr>
+    <tr>
+        <div class="form-group">
+            <th><label for="pelanggan">Pelanggan</label></th>
+              <td>
+                  <select name="pelanggan" id="pelanggan" class="form-control">
+                      @foreach ($pelanggans as $pelanggan)
+                          <option value="{{ $pelanggan->id_pelanggan }}">{{ $pelanggan->nama_pelanggan }}</option>
+                      @endforeach
+                  </select>
+          </td>
+        </div>
+    </tr>
+    <hr style="background-color: #936151;">
 
-
-  <hr style="background-color: #936151;">
-    <h4>NO NOTA : 11</h4>
+    <div class="form-group">
+        <th><label for="users">Petugas</label></th>
+          <td><input type="text" class="form-control" name="user" value="{{ $users->nama  }}" readonly></td>
+    </div>
     <!-- Place the table here -->
     <table id="barangTable" class="table table-hover table-striped-columns">
         <thead style="background: #FFE4DB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
@@ -41,28 +67,32 @@
         </tbody>
     </table>
     <hr style="background-color: #936151;">
-    <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
+    <div class="row p-12 pr-4 pt-3 pb-3 d-flex align-items-center">        
         <div class="form-group">
             <label for="total">Total</label>
-            <input type="number" readonly  name="total">
-          </div>
-          <div class="ml-auto">
-
+            <input type="text" id="total" readonly  name="total">
           </div>
           <div class="form-group">
             <label for="bayar">Bayar</label>
-            <input type="number" name="bayar">
+            <input type="text" id="bayar" name="bayar">
           </div>
           <div class="form-group">
             <label for="kembali">Kembali</label>
-            <input type="number" readonly name="kembali">
+            <input type="text" readonly id="kembali" name="kembali">
+          </div>
+          <div class="form-group">
+            <th><label for="pembayaran">Pembayaran</label></th>
+            <select name="pembayaran" id="">
+                <option value="Cash">Cash</option>
+                <option value="E-Wallet">E-Wallet</option>
+            </select>
           </div>
         </div>
 
     <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
-      <a href="#" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Batal</a>
-      <a href="#" class="btn btn-primary ml-auto btn-lg active" role="button" aria-pressed="Simpan">Simpan</a>
-      </div>
+      <a href="#" class="btn btn-danger btn-lg active" role="button">Batal</a>
+      <button class="btn btn-primary ml-auto btn-lg active" type="submit">Simpan</button>
+    </div>
     </form>
 </div>
 

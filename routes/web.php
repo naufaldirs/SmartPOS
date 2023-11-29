@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\TransaksiKasirController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +26,7 @@ Route::post('/login', [HomeController::class, 'authenticate'])->name('login')->m
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['web', 'auth.session'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
     Route::get('/user', [UserController::class, 'userview'])->name('manajemenuser');
     Route::get('/ubahuser', [UserController::class, 'ubahuser'])->name('ubahuser');
@@ -59,10 +61,17 @@ Route::middleware(['web', 'auth.session'])->group(function () {
     Route::get('penjualan/{no_nota}/ubah-penjualan', [PenjualanController::class, 'edit'])->name('ubahpenjualan');
     Route::put('penjualan/{no_nota}', [PenjualanController::class, 'update'])->name('prosesubahpenjualan');
     Route::get('/hapuspenjualan/{no_nota}', [PenjualanController::class, 'destroy'])->name('hapuspenjualan');
+    Route::get('/ubah-penjualan/{no_nota}', [PenjualanController::class, 'edit'])->name('ubahpenjualanview');
+    Route::put('/ubah-penjualan/{no_nota}', [PenjualanController::class, 'update'])->name('ubahpenjualan');
 
-    Route::get('/transaksi-kasir', [PenjualanController::class, 'transaksikasirview'])->name('transaksikasirview');
-    Route::post('/transaksi-kasir', [PenjualanController::class, 'transaksikasir'])->name('transaksikasir');
+    Route::get('/transaksi-kasir', [TransaksiKasirController::class, 'transaksikasirview'])->name('transaksikasirview');
+    Route::post('/transaksi-kasir', [TransaksiKasirController::class, 'transaksikasir'])->name('transaksikasir');
+    Route::get('/cetak/{no_nota}', [TransaksiKasirController::class,'cetakview'])->name('cetakview');
+    Route::get('/cetak-invoice/{no_nota}', [TransaksiKasirController::class,'cetakInvoice'])->name('cetak');
 
+    Route::get('/laporan-keuangan', [LaporanController::class,'laporankeuangan'])->name('laporankeuangan');
+    Route::get('/financial-report/{selectedDate?}', [LaporanController::class, 'generateFinancialReport'])->name('financial-report');
+    Route::get('/penjualan-chart', [LaporanController::class, 'penjualanChart'])->name('grafikpenjualan');
     
 });
 

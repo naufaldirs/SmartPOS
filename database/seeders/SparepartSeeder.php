@@ -16,7 +16,7 @@ class SparepartSeeder extends Seeder
 
         foreach (range(1, 50) as $index) {
             $harga = $faker->numberBetween(1000, 100000);
-            $stok = $faker->numberBetween(1, 100);
+            $stok = $faker->numberBetween(1, 200);
     
             DB::table('sparepart')->insert([
                 'kd_sparepart' => $index,

@@ -17,6 +17,7 @@
         </div>
         <hr style="background-color: #936151;">
         <!-- Place the table here -->
+        <div class="table-responsive">
         <table class="table table-hover table-striped-columns">
             <thead style="background: #FFE4DB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
             <tr style="color: #555555; ">
@@ -42,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
         <nav aria-label="Page navigation example" class="paginate">
             <ul class="pagination justify-content-end">
                 @if($spareparts->currentPage() > 1)

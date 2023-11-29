@@ -51,6 +51,14 @@ return [
         // ... tambahkan modul Admin lainnya
     ],
     'akuntan' => [
+        [
+            'label' => 'Laporan Keuangan',
+            'route' => 'laporankeuangan',
+        ],
+        [
+            'label' => 'Grafik Penjualan',
+            'route' => 'grafikpenjualan',
+        ],
 
     ],
     // Kasir:

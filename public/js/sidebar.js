@@ -12,8 +12,7 @@ function konfirmasi() {
 var rowCount = 1; // Variable to track the row count
 
 // Function to add new row to the table
-function addRow() {
-  event.preventDefault();
+function addRow(event) {
   // Get selected sparepart data from the dropdown
   var selectedSparepart = $("#spareparts option:selected");
   var kdSparepart = selectedSparepart.val();
@@ -79,3 +78,29 @@ $(document).on('click', '.delete-row', function () {
     $(this).closest('tr').remove();
     rowCount--; // Decrement the row count
 });
+
+
+
+function fetchFinancialReport(selectedDate) {
+  const url = selectedDate ? `/financial-report/${selectedDate}` : '/financial-report';
+
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          // Update tampilan HTML dengan hasil perhitungan
+          document.getElementById('labaKotor').innerText = data.labaKotor;
+          document.getElementById('labaBersih').innerText = data.labaBersih;
+          document.getElementById('transaksiCount').innerText = data.transaksiCount;
+          document.getElementById('pendapatanHariIni').innerText = data.pendapatanHariIni;
+      });
+}
+
+// Panggil fungsi saat halaman dimuat
+fetchFinancialReport();
+
+// Tambahkan event listener untuk filter tanggal
+document.getElementById('dateFilter').addEventListener('change', function () {
+  const selectedDate = this.value;
+  fetchFinancialReport(selectedDate);
+});
+

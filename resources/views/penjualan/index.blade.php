@@ -9,7 +9,7 @@
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">
                     <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                    <i class="fal fa-search"></i>
+                    <i class="fa fa-search"></i>
                 </div>
             </div>
         </div>
@@ -20,7 +20,6 @@
                 <tr style="color: #555555; ">
                     <th>No. Nota</th>
                     <th>Tanggal Order</th>
-                    <th>Keterangan</th>
                     <th>Pembayaran</th>
                     <th>Total</th>
                     <th>Bayar</th>
@@ -35,16 +34,15 @@
                 <tr>
                     <td>{{ $data->no_nota }}</td>
                     <td>{{ $data->tgl_nota }}</td>
-                    <td>{{ $data->keterangan }}</td>
                     <td>{{ $data->pembayaran }}</td>
                     <td>{{ $data->total }}</td>
                     <td>{{ $data->bayar }}</td>
                     <td>{{ $data->kembali }}</td>
                     <td>{{ $data->pelanggan->nama_pelanggan }}</td>
-                    <td>{{ $data->user->nip }}</td>
+                    <td>{{ $data->user->userDetail->nama }}</td>
                         <td>
-                            <a href="{{ route('ubahpenjualan', $data->no_nota) }}">Edit</a> |
-                            <a href="{{ route('hapuspenjualan', $data->no_nota) }}" onclick="return konfirmasi()">Delete</a> | 
+                            {{-- <a href="{{ route('ubahpenjualanview', $data->no_nota) }}">Edit</a> | --}}
+                            <a href="{{ route('hapuspenjualan', $data->no_nota) }}" onclick="return konfirmasi()">Delete</a> 
                         </td>
                     </tr>
                 @endforeach

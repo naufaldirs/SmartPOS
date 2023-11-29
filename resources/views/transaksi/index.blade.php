@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Halaman Utama')
+@section('title', 'Transaksi Kasir')
 @section('content')
 <div class="container-sm tabel_background">
     <div class="col-sm-7">
@@ -12,6 +12,24 @@
  
 
         <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
+            <tr>
+                @if(session('error'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ session('error') }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
+            </tr>
         <tr>
             <th>Barang : </th>
             <td>
@@ -24,14 +42,20 @@
             </div>
         </tr>
 
-  <form action="{{ route('transaksikasir') }}" method="POST">
-    @csrf
+        <form action="{{ route('transaksikasir') }}" method="POST" enctype="multipart/form-data">
+          @csrf
     <tr>
         <div class="form-group">
             <th><label for="no_nota">No Nota</label></th>
             <td><input type="text" name="no_nota" id="" class="form-control"></td>
         </div>
     </tr>
+    <tr>
+      <div class="form-group">
+          <th><label for="tgl_nota">Tanggal Order</label></th>
+          <td><input type="date" name="tgl_nota" id="tgl_nota" class="form-control"></td>
+      </div>
+  </tr>
     <tr>
         <div class="form-group">
             <th><label for="pelanggan">Pelanggan</label></th>
@@ -43,13 +67,14 @@
                   </select>
           </td>
         </div>
+        <div class="form-group">
+          <th><label for="users">Petugas</label></th>
+            <td><input type="hidden" class="form-control" name="user" value="{{ $users->id_user  }}" readonly><p>{{ $users->nama  }}</p></td>
+      </div>
     </tr>
     <hr style="background-color: #936151;">
 
-    <div class="form-group">
-        <th><label for="users">Petugas</label></th>
-          <td><input type="text" class="form-control" name="user" value="{{ $users->nama  }}" readonly></td>
-    </div>
+ 
     <!-- Place the table here -->
     <table id="barangTable" class="table table-hover table-striped-columns">
         <thead style="background: #FFE4DB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">

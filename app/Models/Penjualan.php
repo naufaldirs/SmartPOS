@@ -34,4 +34,8 @@ class Penjualan extends Model
     {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
+    public function penjualanDetails()
+    {
+        return $this->hasMany(PenjualanDetail::class, 'no_nota', 'no_nota');
+    }
 }

@@ -3,7 +3,6 @@
 @section('content')
 <div class="container-sm tabel_background"> 
     <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-        <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Grafik Penjualan</div>
                     <div class="card-body">

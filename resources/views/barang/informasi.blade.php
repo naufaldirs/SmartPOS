@@ -36,9 +36,9 @@
                 <td>{{ $sparepart->stok }}</td>
                 <td>{{ $terjual[$sparepart->kd_sparepart] ?? 0 }}</td>
                 <td>@if($sparepart->stok < 10)
-                    Sedikit
+                   <span style="color: red">Sedikit</span>
                 @else
-                    Banyak
+                    <span style="color: rgb(9, 237, 9)">Banyak</span>
                 @endif         
              </td>
             </tr>

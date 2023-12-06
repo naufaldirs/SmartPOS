@@ -18,7 +18,7 @@ class BarangController extends Controller
     
     // Calculate the total sold for each sparepart
     $soldCounts = PenjualanDetail::groupBy('kd_sparepart')
-        ->selectRaw('kd_sparepart, SUM(kd_sparepart) as total_sold')
+        ->selectRaw('kd_sparepart, count(kd_sparepart) as total_sold')
         ->pluck('total_sold', 'kd_sparepart');
 
     

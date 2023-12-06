@@ -96,6 +96,7 @@ body {
     padding: 20px; /* Atur padding di sini */
     background-color: white;
     width: 100%;
+    overflow-x: auto;
     height: 100%;
     margin-top: 10px;
   }

@@ -78,16 +78,16 @@
               <td>
                 {{ $detail->sparepart->nama_sparepart }}
               </td>
-              <td>{{ $detail->sparepart->harga }}</td>
+              <td>{{ "Rp. " . number_format($detail->sparepart->harga,  0,',','.') }}</td>
               <td>{{ $detail->qty }}</td>
-              <td>{{ $detail->subtotal }}</td>
+              <td>{{ "Rp. ". number_format($detail->subtotal,  0,',','.') }}</td>
           </tr>
       @endforeach
       
         </tbody>
         <tr>
             <td colspan="4" align="right"><b>Total Harga:</b></td>
-            <td>{{ $penjualan->total }}</td>
+            <td>{{"Rp. " . number_format($penjualan->total,  0,',','.') }}</td>
         </tr>
     </table>
     <div class="footer">

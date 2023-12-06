@@ -15,11 +15,11 @@ class PenjualanDetailSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 70) as $index) {
+        foreach (range(1, 90) as $index) {
             $qty = $faker->numberBetween(1, 20);
             $subtotal = $faker->numberBetween(100, 1000);
             $noNota = $faker->numberBetween(1, 20);
-            $kdSparepart = $faker->numberBetween(1, 50);
+            $kdSparepart = $faker->numberBetween(1, 15);
 
             // 1. Dapatkan data sparepart_stok berdasarkan kd_sparepart
             $sparepartStok = DB::table('sparepart')->where('kd_sparepart', $kdSparepart)->first();

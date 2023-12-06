@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="/css/bootstrap4.min.css">
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="icon" type="image/x-icon" href="{{ 'img/logo.ico' }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EBCDC3; padding: 15px;">

@@ -4,7 +4,7 @@
 <div class="container-sm tabel_background">
     <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
         <div class="col-md-5">
-            <p>Riwayat Penjualan</p>
+            <p>History Pembayaran</p>
         </div>
         <div class="col-sm-7">
             <div class="d-flex form-inputs">

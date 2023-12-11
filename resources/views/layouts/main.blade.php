@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <button class="openbtn" onclick="openNav()">☰</button>  
 
-            <a style="font-size: 30px; font-style: italic; font-weight: 700; color: black;" href="#">SMART POS</a>
+            <a style="font-size: 30px; font-style: italic; font-weight: 00; color: black;" href="#">SMART POS</a>
 
     </nav>
 
@@ -29,19 +29,21 @@
              @yield('content')
             </div>
         </main>
- 
     </div>
-
     </div>
 
     <footer>
-        <div class="container-fluid">
-         <div class="row mt-5">
-                <div class="col-12 p-5 mt-6 text-center">
-                    copyright &copy SMART - 2023
-                </div>
+    <div class="row mt-5">
+        <!-- Your existing footer content -->
+        <div class="col-12 p-5 border text-center footer">
+            &copy; SMART - 2023
+
+            <!-- Contact Us section -->
+            <div class="footer-section">
+                Contact Us: smartpos@gmail.com
             </div>
-            </div>
+        </div>
+    </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -49,3 +51,17 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
 </body>
 </html>
+
+<style>
+    .footer {
+        color: black;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .main-content {
+        margin-bottom: 100px; /* Set the desired margin-bottom value */
+    }
+</style>

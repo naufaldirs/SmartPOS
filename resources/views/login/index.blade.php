@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EBCDC3; padding: 15px;">
-        <a class="navbar-brand" style="font-size: 30px; font-style: italic; font-weight: 700; color: black;" href="/">SMART POS</a>
-        <ul class="navbar-nav ml-auto">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EBCDC3; padding: 15px;">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <img src="/img/smart.png" style="width: 70px;" alt="logo">
             </li>
-            <!-- Tambahkan menu lain di sini -->
         </ul>
+        <a class="navbar-brand" style="font-size: 30px; font-style: italic; font-weight: 600; color: black;" href="/">SMART POS</a>
+        <!-- You can add more menu items here if needed -->
     </nav>
 
     <!-- Card menggunakan Bootstrap -->
@@ -43,8 +43,8 @@
     </div>
 
     <div class="row mt-5">
-                <div class="col-12 p-5 border text-center">
-                    copyright &copy SMART - 2023
+                <div class="col-12 p-5  text-center">
+                     &copy SMART - 2023
                 </div>
             </div>
 

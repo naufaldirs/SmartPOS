@@ -19,7 +19,6 @@ class PenjualanSeeder extends Seeder
             DB::table('penjualan')->insert([
                 'no_nota' => $index,
                 'tgl_nota' => $faker->date,
-                'keterangan' => $faker->sentence,
                 'pembayaran' => $faker->randomElement(['Cash', 'E-Wallet','Debit']),
                 'total' => $faker->numberBetween(1000, 100000),
                 'bayar' => $faker->numberBetween(500, 50000),

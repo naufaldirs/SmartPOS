@@ -19,9 +19,7 @@ body {
           margin-top: 50px;
           
         }
-footer {
-  z-index: -1;
-}
+
 .btn  {
     color: black!important;
     background-color: #EBCDC3!important;

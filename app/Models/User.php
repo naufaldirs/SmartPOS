@@ -39,6 +39,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
 
+
     public function userDetail() {
         return $this->hasOne(UserDetail::class, 'id_user', 'id_user');
     }

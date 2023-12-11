@@ -11,7 +11,7 @@
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">
                     <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                    <i class="fa fa-search"></i>
+                   <!-- <i class="fa fa-search"></i> -->
                 </div>
             </div>
         </div>
@@ -63,4 +63,5 @@
                 @endif
             </ul>
         </nav>
+        
 @endsection

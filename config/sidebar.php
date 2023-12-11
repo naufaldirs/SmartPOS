@@ -33,7 +33,7 @@ return [
             'route' => 'informasibarang',
         ],
         [
-            'label' => 'Stok Barang',
+            'label' => 'Stok Sparespart',
             'route' => 'barang',
         ],
         [
@@ -41,7 +41,7 @@ return [
             'route' => 'pelanggan',
         ],
         [
-            'label' => 'Riwayat Penjualan',
+            'label' => 'Riwayat Pembayaran',
             'route' => 'historypembayaran',
         ],
         [
@@ -51,6 +51,19 @@ return [
         // ... tambahkan modul Admin lainnya
     ],
     'akuntan' => [
+        [
+            'label' => 'Laporan Keuangan',
+            'route' => 'laporankeuangan',
+        ],
+        [
+            'label' => 'Grafik Penjualan',
+            'route' => 'grafikpenjualan',
+        ],
+
+        [
+            'label' => 'Laporan Pajak',
+            'route' => 'grafikpenjualan',
+        ],
 
     ],
     // Kasir:
@@ -69,7 +82,7 @@ return [
         ],
         [
             'label' => 'Transaksi Kasir',
-            'route' => 'tambahpenjualanview',
+            'route' => 'transaksikasirview',
         ],
         [
             'label' => 'Data Penjualan',

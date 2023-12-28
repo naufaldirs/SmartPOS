@@ -15,15 +15,16 @@ class PenjualanSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 60) as $index) {
+        foreach (range(1, 130) as $index) {
+            $total = $faker->numberBetween(1000, 1000000);
+            $bayar = $faker->numberBetween(1000, 1000000);
             DB::table('penjualan')->insert([
                 'no_nota' => $index,
                 'tgl_nota' => $faker->dateTimeThisYear(),
-                'keterangan' => $faker->sentence,
                 'pembayaran' => $faker->randomElement(['Cash', 'E-Wallet','Debit']),
-                'total' => $faker->numberBetween(1000, 100000),
-                'bayar' => $faker->numberBetween(500, 50000),
-                'kembali' => $faker->numberBetween(0, 500),
+                'total' => $total,
+                'bayar' => $bayar,
+                'kembali' => $total - $bayar,
                 'id_pelanggan' => $faker->numberBetween(1, 10),
                 'id_user' => $faker->numberBetween(1, 10),
             ]);

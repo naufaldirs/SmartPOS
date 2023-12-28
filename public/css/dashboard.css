@@ -127,7 +127,64 @@ body {
     background: #FDFDFD; 
   
   }
-          
+ 
+    /* Add this CSS for FAQ styling */
+
+/* Style for the FAQ section */
+#faq {
+  padding: 50px 0;
+}
+
+
+
+
+/* Style for the question headings */
+.panel-title a {
+  display: block;
+  padding: 15px;
+  background-color: #EBCDC3;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* Style for the collapsed content */
+.panel-body {
+  background-color: #F5F5F5;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Style for the active (open) question */
+.panel-title a[aria-expanded="true"] {
+  background-color: #D8B9AB;
+}
+
+/* Optional: Add some hover effect */
+.panel-title a:hover {
+  background-color: #D8B9AB;
+  transition: background-color 0.3s ease;
+}
+
+/* Add this CSS for hover effect on the login button */
+.login:hover {
+          background-color: #D8B9AB;
+          color: white;
+          transition: background-color 0.3s ease;
+      }
+
+.footer {
+          background-color: #EBCDC3;
+          color: black;
+          text-align: center;
+          padding: 15px;
+          font-size: 14px;
+          font-weight: bold;
+      }
+
   .sidebar {
     position: fixed;
     top: 0;

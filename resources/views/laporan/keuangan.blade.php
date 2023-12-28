@@ -9,7 +9,6 @@
         
     </div>
     <hr style="background-color: #936151;">
-    <p>Hasil Penjualan</p>
       <!-- Filter by Date -->
       <div class="form-group">
         <label for="dateFilter">Pilih Rentang Waktu:</label>
@@ -29,5 +28,4 @@
         <p>Transaksi: <span id="transaksiCount">0</span></p>
         <p>Pendapatan Hari Ini: <span id="pendapatanHariIni">0</span></p>
     </div>
-</div>
 @endsection

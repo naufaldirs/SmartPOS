@@ -12,17 +12,17 @@
 <body>
    <!-- Header -->
 <header>
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="openbtn" onclick="openNav()">☰</button>  
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <img src="/img/logo.png" style="width: 50px;" alt="logo">
+                    <a class="navbar-brand" style="font-size: 30px; font-style: italic; font-weight: 600; color: black;" href="/profile">SMART POS</a>
                 </li>
                 <!-- Tambahkan menu lain di sini -->
-            </ul>        </div>
+            </ul>       
+         </div>
     </nav>
-
 </header>
 
     <div class="container-fluid">
@@ -36,13 +36,12 @@
  
     </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
     {{-- <script src="{{ asset('js/report.js') }}"></script> --}}
- 
+
 </body>
 </html>

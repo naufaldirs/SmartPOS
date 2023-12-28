@@ -5,6 +5,17 @@ function openNav() {
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
   }
+
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});
+
+
 function konfirmasi() {
     confirm("Apakah anda yakin??");
 }
@@ -25,8 +36,8 @@ function addRow(event) {
       '<th scope="row">' + rowCount++ + '</th>' + // Increment the row count
       '<td id="namaSparepart">' + namaSparepart + '</td>' +
       '<td id="hargaSparepart">' + hargaSparepart + '</td>' +
-      '<td><input type="text" name="qty[]" class="qty-input"></td>' +
-      '<td><input type="number" name="subtotal[]" readonly class="subtotal-input"> </td>' +
+      '<td><input type="text" name="qty[]" class="qty-input" style="width:25%;"></td>' +
+      '<td><input type="number" name="subtotal[]" readonly style="width:50%;" class="subtotal-input"> </td>' +
       '<td><a href="#" class="btn btn-danger btn-lg active delete-row" role="button" aria-pressed="true"><i class="fa fa-minus-square" style="color:red"></i></a></td>' +
       '</tr>';
 

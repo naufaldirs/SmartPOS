@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_pelanggan'); // Primary Key
             $table->string('nama_pelanggan', 35);
             $table->string('no_telp');
-            $table->string('email', 35);
+            $table->string('email', 50);
             $table->timestamps();
 
             

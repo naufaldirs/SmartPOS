@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-5 text-right ml-sm-auto">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Cari">
+                <input class="form-control ml-auto" id="myInput" type="text" placeholder="Cari" style="width: 70%;">
                 <div class="input-group-append">
                     <span class="input-group-text bg-white border-0"><i class="fa fa-search"></i></span>
                 </div>
@@ -28,20 +28,22 @@
                 <th scope="col">Stok Alert</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($spareparts as $sparepart)
-            <tr>
-                <th scope="row">{{ $sparepart->kd_sparepart }}</th>
-                <td>{{ $sparepart->nama_sparepart }}</td>
-                <td>{{ $sparepart->stok }}</td>
-                <td>{{ $terjual[$sparepart->kd_sparepart] ?? 0 }}</td>
-                <td>@if($sparepart->stok < 10)
-                   <span style="color: red">Sedikit</span>
-                @else
-                    <span style="color: rgb(9, 237, 9)">Banyak</span>
-                @endif         
-             </td>
-            </tr>
+        <tbody id="myTable">
+            @foreach($spareparts->sortByDesc(function($sparepart) use ($terjual) {
+                return $terjual[$sparepart->kd_sparepart] ?? 0;
+            }) as $sparepart)
+                <tr>
+                    <th scope="row">{{ $sparepart->kd_sparepart }}</th>
+                    <td>{{ $sparepart->nama_sparepart }}</td>
+                    <td>{{ $sparepart->stok }}</td>
+                    <td>{{ $terjual[$sparepart->kd_sparepart] ?? 0 }}</td>
+                    <td>@if($sparepart->stok < 15)
+                        <span style="color: red">Sedikit</span>
+                    @else
+                        <span style="color: rgb(9, 237, 9)">Banyak</span>
+                    @endif
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>

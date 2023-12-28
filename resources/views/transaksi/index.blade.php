@@ -38,9 +38,16 @@
                     <i class="fa fa-save"></i> Save
                   </button>
               </div>
-
-              <!-- User information -->
               <div class="form-group mt-3">
+                <label for="pelanggan">Pelanggan:</label>
+                <select name="pelanggan" id="pelanggan" class="form-control">
+                    @foreach ($pelanggans as $pelanggan)
+                        <option value="{{ $pelanggan->id_pelanggan }}">{{ $pelanggan->nama_pelanggan }}</option>
+                    @endforeach
+                </select>
+            </div>
+              <!-- User information -->
+              <div class="form-group ">
                   <label for="no_nota">No Nota:</label>
                   <input type="text" name="no_nota" id="no_nota" class="form-control">
               </div>
@@ -48,14 +55,7 @@
                   <label for="tgl_nota">Tanggal Order:</label>
                   <input type="date" name="tgl_nota" id="tgl_nota" class="form-control">
               </div>
-              <div class="form-group">
-                  <label for="pelanggan">Pelanggan:</label>
-                  <select name="pelanggan" id="pelanggan" class="form-control">
-                      @foreach ($pelanggans as $pelanggan)
-                          <option value="{{ $pelanggan->id_pelanggan }}">{{ $pelanggan->nama_pelanggan }}</option>
-                      @endforeach
-                  </select>
-              </div>
+
               <div class="form-group">
                   <label for="users">Petugas:</label>
                   <input type="hidden" class="form-control" name="user" value="{{ $users->id_user }}" readonly>
@@ -69,7 +69,7 @@
                         <th scope="col">NO</th>
                         <th scope="col">Produk</th>
                         <th scope="col">Harga</th>
-                        <th scope="col">Qty</th>
+                        <th scope="col" style="max-width:15%;">Qty</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Pilihan</th>
                     </tr>
@@ -109,7 +109,7 @@
         </div>
 
         <div class="row p-12 pt-3 pb-3 d-flex align-items-center">
-            <a href="#" class="btn btn-danger btn-lg active" role="button">
+            <a href="#" onclick="history.back()" class="btn btn-danger btn-lg active" role="button">
                 <i class="fa fa-minus-square"></i> Batal
             </a>
             <button class="btn btn-primary ml-auto btn-lg active" type="submit">

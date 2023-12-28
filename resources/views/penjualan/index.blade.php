@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">
-                    <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                    <i class="fa fa-search"></i>
+                    <input class="form-control ml-auto" id="myInput" type="text" placeholder="Cari" style="width: 70%;">
+                    <span class="input-group-text bg-white border-0"><i class="fa fa-search"></i></span>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
                 @foreach($penjualanData as $data)
                 <tr>
                     <td>{{ $data->no_nota }}</td>
@@ -41,8 +41,8 @@
                     <td>{{ $data->pelanggan->nama_pelanggan }}</td>
                     <td>{{ $data->user->userDetail->nama }}</td>
                         <td>
-                            {{-- <a href="{{ route('ubahpenjualanview', $data->no_nota) }}">Edit</a> | --}}
-                            <a href="{{ route('hapuspenjualan', $data->no_nota) }}" onclick="return konfirmasi()">Delete</a> 
+                            <a href="{{ route('cetakview', $data->no_nota) }}"><i class="fa fa-print" style="font-size:24px;color:blue"></i></a> 
+                            <a href="{{ route('hapuspenjualan', $data->no_nota) }}" onclick="return konfirmasi()"><i class="fa fa-window-close" style="font-size:24px;color:red">
                         </td>
                     </tr>
                 @endforeach

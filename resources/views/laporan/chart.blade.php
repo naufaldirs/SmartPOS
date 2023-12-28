@@ -12,7 +12,7 @@
         </div>
         </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+<script src="{{ asset('js/chart.js') }}"></script>  
 <script>
     var ctx = document.getElementById('penjualanChart').getContext('2d');
     var penjualanChart = new Chart(ctx, {

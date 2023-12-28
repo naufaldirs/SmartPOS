@@ -4,7 +4,7 @@
 <div class="container-sm tabel_background">
     <h2>Tambah Detail User</h2>
 
-    <form action="{{ route('tambahdetail' , ['id_user' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('ubahdetail' , ['id_user' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <table class="table tableku">

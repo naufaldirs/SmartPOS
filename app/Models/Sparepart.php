@@ -15,6 +15,7 @@ class Sparepart extends Model
         'nama_sparepart',
         'harga',
         'stok',
+        'total_harga'
         // Tambahkan kolom lain sesuai kebutuhan
     ];
 }

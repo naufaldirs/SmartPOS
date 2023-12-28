@@ -48,7 +48,6 @@ return [
             'label' => 'Manajemen Pengguna',
             'route' => 'manajemenuser',
         ],
-        // ... tambahkan modul Admin lainnya
     ],
     'akuntan' => [
         [
@@ -58,6 +57,10 @@ return [
         [
             'label' => 'Grafik Penjualan',
             'route' => 'grafikpenjualan',
+        ],
+        [
+            'label' => 'Laporan Pajak',
+            'route' => 'laporanpajak',
         ],
 
     ],
@@ -120,6 +123,14 @@ return [
         [
             'label' => 'Data Pelanggan',
             'route' => 'pelanggan',
+        ],
+        [
+            'label' => 'Laporan Pajak',
+            'route' => 'laporanpajak',
+        ],
+        [
+            'label' => 'Peramalan',
+            'route' => 'peramalan',
         ],
 
     ],

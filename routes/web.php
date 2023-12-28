@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PeramalanController;
 use App\Http\Controllers\TransaksiKasirController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/login', [HomeController::class, 'loginview'])->name('indexlogin')->middleware('bypassauth');
@@ -48,12 +51,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tambah-barang', [BarangController::class, 'tambahbarangview'])->name('tambahbarangview')->middleware('role:admin,manajer,kasir');
     Route::post('/tambah-barang', [BarangController::class, 'tambahbarang'])->name('tambahbarang')->middleware('role:admin,manajer,kasir');
 
-    Route::get('/data-pelanggan', [PelangganController::class, 'pelanggan'])->name('pelanggan')->middleware('role:manajer');
-    Route::get('/ubah-pelanggan/{id_pelanggan}', [PelangganController::class, 'ubahpelangganview'])->name('ubahpelangganview')->middleware('role:manajer');
-    Route::post('/ubah-pelanggan/{id_pelanggan}', [PelangganController::class, 'ubahpelanggan'])->name('ubahpelanggan')->middleware('role:manajer');
+    Route::get('/data-pelanggan', [PelangganController::class, 'pelanggan'])->name('pelanggan')->middleware('role:manajer,admin');
+    Route::get('/ubah-pelanggan/{id_pelanggan}', [PelangganController::class, 'ubahpelangganview'])->name('ubahpelangganview')->middleware('role:manajer,admin');
+    Route::post('/ubah-pelanggan/{id_pelanggan}', [PelangganController::class, 'ubahpelanggan'])->name('ubahpelanggan')->middleware('role:manajer,admin');
     Route::get('/hapus-pelanggan/{id_pelanggan}', [PelangganController::class, 'hapuspelanggan'])->name('hapuspelanggan')->middleware('role:manajer');
-    Route::get('/tambah-pelanggan', [PelangganController::class, 'tambahpelangganview'])->name('tambahpelangganview')->middleware('role:manajer');
-    Route::post('/tambah-pelanggan', [PelangganController::class, 'tambahpelanggan'])->name('tambahpelanggan')->middleware('role:manajer');
+    Route::get('/tambah-pelanggan', [PelangganController::class, 'tambahpelangganview'])->name('tambahpelangganview')->middleware('role:manajer,admin');
+    Route::post('/tambah-pelanggan', [PelangganController::class, 'tambahpelanggan'])->name('tambahpelanggan')->middleware('role:manajer,admin');
     Route::get('/input-pelanggan', [PelangganController::class, 'tambahpelanggankasirview'])->name('tambahpelanggankasirview')->middleware('role:kasir');
     Route::post('/input-pelanggan', [PelangganController::class, 'tambahpelanggankasir'])->name('tambahpelanggankasir')->middleware('role:kasir');
     Route::get('/data-penjualan', [PenjualanController::class, 'index'])->name('indexpenjualan')->middleware('role:kasir,manajer');
@@ -66,13 +69,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/transaksi-kasir', [TransaksiKasirController::class, 'transaksikasirview'])->name('transaksikasirview')->middleware('role:kasir');
     Route::post('/transaksi-kasir', [TransaksiKasirController::class, 'transaksikasir'])->name('transaksikasir')->middleware('role:kasir');
-    Route::get('/cetak/{no_nota}', [TransaksiKasirController::class,'cetakview'])->name('cetakview')->middleware('role:kasir');
-    Route::get('/cetak-invoice/{no_nota}', [TransaksiKasirController::class,'cetakInvoice'])->name('cetak')->middleware('role:kasir');
+    Route::get('/cetak/{no_nota}', [TransaksiKasirController::class,'cetakview'])->name('cetakview')->middleware('role:kasir,manajer');
+    Route::get('/cetak-invoice/{no_nota}', [TransaksiKasirController::class,'cetakInvoice'])->name('cetak')->middleware('role:kasir,manajer');
 
     Route::get('/laporan-keuangan', [LaporanController::class,'laporankeuangan'])->name('laporankeuangan')->middleware('role:akuntan,manajer');
     Route::get('/financial-report/{selectedDate?}', [LaporanController::class, 'generateFinancialReport'])->name('financial-report')->middleware('role:akuntan,manajer');
+    Route::get('/peramalanchart', [LaporanController::class, 'peramalan'])->name('peramalan')->middleware('role:akuntan,manajer');
     Route::get('/penjualan-chart', [LaporanController::class, 'penjualanChart'])->name('grafikpenjualan')->middleware('role:akuntan,manajer');
-    
+    Route::get('/laporan-pajak', [LaporanController::class,'laporanpajakview'])->name('laporanpajak')->middleware('role:akuntan,manajer');
+    Route::get('/get-sales-data/{year}', [LaporanController::class, 'getSalesData']);
+
+    Route::get('/peramalan', [PeramalanController::class, 'index'])->name('peramalan');
+    Route::post('/forecast', [PeramalanController::class, 'forecast'])->name('forecast');
 });
 
 

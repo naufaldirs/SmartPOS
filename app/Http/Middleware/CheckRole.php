@@ -16,6 +16,6 @@ class CheckRole
         }
 
         // Jika pengguna tidak memiliki peran yang diperlukan, Anda dapat mengarahkannya atau memberikan respons yang sesuai.
-        return response('Hayoo Mau Kemana.', 401);
+        return redirect()->back();
     }
 }

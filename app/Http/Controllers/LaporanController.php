@@ -71,4 +71,22 @@ public function penjualanChart()
 
     return view('laporan.chart', compact('penjualanData'));
 }
+
+public function laporanpajakview() {
+    $salesData = Penjualan::selectRaw('YEAR(tgl_nota) as tahun, SUM(total) as totalPendapatan')
+    ->groupBy('tahun')
+    ->get();
+
+    return view('laporan.pajak', compact('salesData'));
+}
+
+public function getSalesData()
+{
+    $salesData = Penjualan::selectRaw('YEAR(tgl_nota) as tahun, SUM(total) as totalPendapatan')
+        ->groupBy('tahun')
+        ->get();
+
+    return response()->json($salesData);
+}
+
 }

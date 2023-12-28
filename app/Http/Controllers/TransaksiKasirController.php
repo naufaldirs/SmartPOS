@@ -9,7 +9,6 @@ use App\Models\Sparepart;
 use Illuminate\Http\Request;
 use App\Models\PenjualanDetail;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class TransaksiKasirController extends Controller

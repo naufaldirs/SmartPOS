@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Laporan Keuangan')
 @section('content')
-<div class="container-sm tabel_background">
+<div class="container-fluid tabel_background">
     <div class="row">
         <div class="col-md-5 d-flex align-items-center">
             <h2 class="mr-2">Laporan Keuangan</h2>

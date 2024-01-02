@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">Grafik Penjualan</div>
                     <div class="card-body">
-                        <canvas id="penjualanChart" width="1280" height="768"></canvas>
+                        <canvas id="penjualanChart" width="902" height="360"></canvas>
                     </div>
                 </div>
         </div>

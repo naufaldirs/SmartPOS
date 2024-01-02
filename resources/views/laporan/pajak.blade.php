@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Laporan Pajak')
 @section('content')
-<div class="tabel_background col-md-8">
+<div class="tabel_background container-fluid">
     <div class="text-center">
       <h2 class="font-weight-bold">Laporan Pajak</h2>
     </div>

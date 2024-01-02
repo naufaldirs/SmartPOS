@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('mad');
             $table->double('mse');
             $table->double('mape');
+            $table->double('trend')->nullable();
             $table->timestamps();
 
             $table->foreign('kd_sparepart')->references('kd_sparepart')->on('sparepart')->onDelete('cascade')->onUpdate('cascade');

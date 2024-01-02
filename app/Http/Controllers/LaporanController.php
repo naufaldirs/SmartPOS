@@ -18,41 +18,40 @@ class LaporanController extends Controller
         // Query untuk menghitung laba kotor, laba bersih, transaksi, dan pendapatan
         $query = DB::table('penjualan');
         $today = Carbon::today();
+        
         // Filter berdasarkan tanggal jika ada
         if ($selectedDate === 'today') {
             $query->whereDate('tgl_nota', Carbon::today());
             $totalPenjualan = $query->sum('total');
-            $labaKotor = $totalPenjualan;
-            $labaBersih = intval($labaKotor * 0.8); // Misalnya, laba bersih adalah 80% dari laba kotor
+            $labaKotor = 'Rp. ' . number_format($totalPenjualan, 0, ',', '.');
+            $labaBersih = 'Rp. ' . number_format(intval($totalPenjualan * 0.8), 0, ',', '.');
             $transaksiCount = $query->count();
-            $pendapatanHariIni = Penjualan::whereDate('created_at', $today)->sum('total');
+            $pendapatanHariIni = 'Rp. ' . number_format(Penjualan::whereDate('created_at', $today)->sum('total'), 0, ',', '.');
         } elseif ($selectedDate === 'this_week') {
             $query->whereBetween('tgl_nota', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-
+    
             $totalPenjualan = $query->sum('total');
-            $labaKotor = $totalPenjualan;
-            $labaBersih = intval($labaKotor * 0.8); // Misalnya, laba bersih adalah 80% dari laba kotor
+            $labaKotor = 'Rp. ' . number_format($totalPenjualan, 0, ',', '.');
+            $labaBersih = 'Rp. ' . number_format(intval($totalPenjualan * 0.8), 0, ',', '.');
             $transaksiCount = $query->count();
-            $pendapatanHariIni = Penjualan::whereDate('created_at', $today)->sum('total');
+            $pendapatanHariIni = 'Rp. ' . number_format(Penjualan::whereDate('created_at', $today)->sum('total'), 0, ',', '.');
         } elseif ($selectedDate === 'this_month') {
             $query->whereMonth('tgl_nota', Carbon::now()->month);
-
+    
             $totalPenjualan = $query->sum('total');
-            $labaKotor = $totalPenjualan;
-            $labaBersih = intval($labaKotor * 0.8); // Misalnya, laba bersih adalah 80% dari laba kotor
+            $labaKotor = 'Rp. ' . number_format($totalPenjualan, 0, ',', '.');
+            $labaBersih = 'Rp. ' . number_format(intval($totalPenjualan * 0.8), 0, ',', '.');
             $transaksiCount = $query->count();
-            $pendapatanHariIni = Penjualan::whereDate('created_at', $today)->sum('total');
+            $pendapatanHariIni = 'Rp. ' . number_format(Penjualan::whereDate('created_at', $today)->sum('total'), 0, ',', '.');
         } elseif ($selectedDate === 'this_year') {
             $query->whereYear('tgl_nota', Carbon::now()->year);
             $totalPenjualan = $query->sum('total');
-            $labaKotor = $totalPenjualan;
-            $labaBersih = intval($labaKotor * 0.8); // Misalnya, laba bersih adalah 80% dari laba kotor
+            $labaKotor = 'Rp. ' . number_format($totalPenjualan, 0, ',', '.');
+            $labaBersih = 'Rp. ' . number_format(intval($totalPenjualan * 0.8), 0, ',', '.');
             $transaksiCount = $query->count();
-            $pendapatanHariIni = Penjualan::whereDate('created_at', $today)->sum('total');
-    
+            $pendapatanHariIni = 'Rp. ' . number_format(Penjualan::whereDate('created_at', $today)->sum('total'), 0, ',', '.');
         }
-  
- 
+    
         // Mengembalikan hasil dalam bentuk JSON
         return response()->json([
             'labaKotor' => $labaKotor,
@@ -60,9 +59,9 @@ class LaporanController extends Controller
             'transaksiCount' => $transaksiCount,
             'pendapatanHariIni' => $pendapatanHariIni,
         ]);
+    }
+    
 
- 
-}
 public function penjualanChart()
 {
     $penjualanData = Penjualan::selectRaw("DATE_FORMAT(tgl_nota, '%Y-%m') as bulan, count(no_nota) as total_penjualan")

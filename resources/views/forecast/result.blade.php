@@ -1,30 +1,142 @@
-<script>
-   
-</script>
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Periode</th>
-            <th>Actual</th>
-            <th>Forecast</th>
-            <th>MAD</th>
-            <th>MSE</th>
-            <th>MAPE</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($forecastResults as $result)
-        <tr>
-            <td>{{ $result->no }}</td>
-            <td>{{ $result->periode }}</td>
-            <td>{{ $result->actual }}</td>
-            <td>{{ $result->forecast }}</td>
-            <td>{{ $result->mad }}</td>
-            <td>{{ $result->mse }}</td>
-            <td>{{ $result->mape }}</td>
-        </tr>
-        @endforeach
-    </tbody>
+<div class="container">
+    <div class="row mt-6">
+        <div class="col-md-12 ">
+            <div class="alert alert-primary" role="alert">
+            <h3>Hasil Peramalan untuk Sparepart: {{ $spareparts->nama_sparepart }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Periode</th>
+                        <th>Actual /Pcs</th>
+                        <th>Forecast /Pcs</th>
+                        <th>MAD</th>
+                        <th>MSE</th>
+                        <th>MAPE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($forecastResults as $result)
+                    <tr>
+                        <td>{{ $result->no }}</td>
+                        <td>{{ date("d F Y",strtotime($result->periode)) }}</td>
+                        <td>{{ $result->actual }}</td>
+                        <td>{{ $result->forecast }}</td>
+                        <td>{{ $result->mad }}</td>
+                        <td>{{ $result->mse }}</td>
+                        <td>{{ number_format($result->mape * 100, 2) . '%' }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align: center
+            ">Grafik Trend</h3>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+            <h3>Hasil Peramalan untuk Periode Selanjutnya</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Periode</th>
+                        <th>Forecast</th>
+                        <th>MAD</th>
+                        <th>MSE</th>
+                        <th>MAPE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $nextForecast['no'] }}</td>
+                        <td>{{ $nextForecast['periode'] }}</td>
+                        <td>{{ $nextForecast['forecast'] }}</td>
+                        <td>{{ $nextForecast['mad'] }}</td>
+                        <td>{{ $nextForecast['mse'] }}</td>
+                        <td>{{ $nextForecast['mape'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">
+            <h3>Kesimpulan</h3>
+            <p>Prediksi kebutuhan stok penjualan (sparepart: {{ $spareparts->nama_sparepart }}) pada bulan selanjutnya ({{ $nextForecast['periode'] }}) adalah {{ $nextForecast['forecast'] }} Pcs.</p>
+            </div>
+        </div>
+    </div>
 
-</table>
+</div>
+
+<script src="{{ asset('js/chart.js') }}"></script>
+<script>
+    // Data untuk grafik
+    var data = {
+        labels: [
+            @foreach($forecastResults as $result)
+                "{{ date('d F Y', strtotime($result->periode)) }}",
+            @endforeach
+        ],
+        datasets: [{
+            label: "Actual",
+            data: [
+                @foreach($forecastResults as $result)
+                    {{ $result->actual }},
+                @endforeach
+            ],
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1
+        },
+        {
+            label: "Forecast",
+            data: [
+                @foreach($forecastResults as $result)
+                    {{ $result->forecast }},
+                @endforeach
+                {{ $nextForecast['forecast'] }}
+            ],
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1
+        }]
+    };
+
+    // Konfigurasi grafik
+    var options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+    // Membuat grafik
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options
+    });
+</script>

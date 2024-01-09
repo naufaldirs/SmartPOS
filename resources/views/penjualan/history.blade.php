@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-7">
             <div class="d-flex form-inputs">
-                <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                <i class="fa fa-search"></i>
+                <input class="form-control ml-auto" id="myInput" type="text" placeholder="Cari" style="width: 70%;">
+                <span class="input-group-text bg-white border-0"><i class="fa fa-search"></i></span>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <th scope="col">Tanggal Order</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @foreach($historyPayments as $payment)
             <tr>
                 <td>{{ $payment->nama_pelanggan }}</td>

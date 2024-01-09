@@ -10,6 +10,8 @@ class Penjualan extends Model
     protected $table = 'penjualan'; // Sesuaikan dengan nama tabel yang benar
     protected $primaryKey = 'no_nota'; // Sesuaikan dengan primary key yang benar
 
+    public $incrementing = false; // This line tells Laravel not to auto-increment the primary key
+
     protected $fillable = [
         'no_nota',
         'tgl_nota',
@@ -33,5 +35,9 @@ class Penjualan extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+    public function penjualanDetails()
+    {
+        return $this->hasMany(PenjualanDetail::class, 'no_nota', 'no_nota');
     }
 }

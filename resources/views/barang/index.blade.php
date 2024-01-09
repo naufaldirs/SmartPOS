@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Stok Barang')
 @section('content')
-<a href="{{ route('tambahbarangview') }}" class="btn btn-lg active ml-auto p-3 " role="button" aria-pressed="true" style="background: #EBCDC3; border: 1px #CDCDCD solid; width: 25%; height: 100%; color: white;">Masukkan Stok Masuk</a>
+<a href="{{ route('tambahbarangview') }}" class="btn btn-lg active ml-auto p-3 " role="button" aria-pressed="true" style="background: #EBCDC3; border: 1px #CDCDCD solid; width: 25%; height: 100%;">Masukkan Stok Masuk</a>
 </div>
     <div class="container-sm tabel_background">
         <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
@@ -10,13 +10,14 @@
             </div>
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">
-                    <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                    <i class="fal fa-search"></i>
+                    <input class="form-control ml-auto" id="myInput" type="text" placeholder="Cari" style="width: 70%;">
+                    <span class="input-group-text bg-white border-0"><i class="fa fa-search"></i></span>
                 </div>
             </div>
         </div>
         <hr style="background-color: #936151;">
         <!-- Place the table here -->
+        <div class="table-responsive">
         <table class="table table-hover table-striped-columns">
             <thead style="background: #FFE4DB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
             <tr style="color: #555555; ">
@@ -27,22 +28,23 @@
                 <th scope="col">Aksi</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
                 @foreach($spareparts as $sparepart)
                 <tr>
                     <th scope="row">{{ $sparepart->kd_sparepart }}</th>
                     <td>{{ $sparepart->nama_sparepart }}</td>
                     <td>{{ $sparepart->stok }}</td>
-                    <td>{{ $sparepart->harga }}</td>
+                    <td>{{ "Rp. " . number_format($sparepart->harga,  0,',','.') }}</td>
                     <td>
-                        <a href="{{ route('ubahbarangview', ['kd_sparepart'=> $sparepart->kd_sparepart]) }}">EDIT</a> |
-                        <a href="{{ route('hapusbarang', ['kd_sparepart' => $sparepart->kd_sparepart]) }}" onclick="return konfirmasi()">HAPUS</a>
+                        <a href="{{ route('ubahbarangview', ['kd_sparepart'=> $sparepart->kd_sparepart]) }}"><i class="fa fa-pencil-square" style="font-size:24px;color:blue"></i></a> |
+                        <a href="{{ route('hapusbarang', ['kd_sparepart' => $sparepart->kd_sparepart]) }}" onclick="return konfirmasi()"><i class="fa fa-window-close" style="font-size:24px;color:red"></i></a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+    </div>
+        <nav aria-label="Page navigation example" class="paginate">
             <ul class="pagination justify-content-end">
                 @if($spareparts->currentPage() > 1)
                 <li class="page-item">

@@ -1,17 +1,15 @@
 @extends('layouts.main')
 @section('title', 'Data Pelanggan')
 @section('content')
-    <a href="{{ route('tambahpelangganview') }}" class="btn btn-lg active ml-auto p-3" role="button" aria-pressed="true"
-        style="background: #EBCDC3; border: 1px #CDCDCD solid;  color: white;">Tambah User</a>
     <div class="container-sm tabel_background">
         <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
             <div class="col-md-5">
-                <p>Daftar User</p>
+                <p>Daftar Pelanggan</p>
             </div>
             <div class="col-sm-7">
                 <div class="d-flex form-inputs">
-                    <input class="form-control ml-auto" type="text" placeholder="Cari" style="width: 70%;">
-                    <i class="fal fa-search"></i>
+                    <input class="form-control ml-auto" id="myInput" type="text" placeholder="Cari" style="width: 70%;">
+                    <span class="input-group-text bg-white border-0"><i class="fa fa-search"></i></span>
                 </div>
             </div>
         </div>
@@ -27,7 +25,7 @@
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
                 @foreach($pelanggans as $pelanggan)
                 <tr>
                     <th scope="row">{{ $pelanggan->id_pelanggan }}</th>
@@ -35,8 +33,8 @@
                     <td>{{ $pelanggan->no_telp }}</td>
                     <td>{{ $pelanggan->email }}</td>
                     <td>
-                        <a href="{{ route('ubahpelangganview', ['id_pelanggan'=> $pelanggan->id_pelanggan]) }}">EDIT</a> |
-                        <a href="{{ route('hapuspelanggan', ['id_pelanggan' => $pelanggan->id_pelanggan]) }}" onclick="return konfirmasi()">HAPUS</a>
+                        <a href="{{ route('ubahpelangganview', ['id_pelanggan'=> $pelanggan->id_pelanggan]) }}"><i class="fa fa-pencil-square" style="font-size:24px;color:blue"></i></a> |
+                        <a href="{{ route('hapuspelanggan', ['id_pelanggan' => $pelanggan->id_pelanggan]) }}" onclick="return konfirmasi()"><i class="fa fa-window-close" style="font-size:24px;color:red"></i></a>
                     </td>
                 </tr>
                 @endforeach

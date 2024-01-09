@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_sparepart');
             $table->integer('harga');
             $table->integer('stok');
+            $table->integer('total_harga');
             $table->timestamps();
 
         });

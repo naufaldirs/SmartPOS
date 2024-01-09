@@ -6,7 +6,6 @@
 
     <form action="{{ route('tambahdetail' , ['id_user' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <table class="table tableku">
             <tr>
                 <div class="form-group">

@@ -206,7 +206,7 @@ public function tambahDetailUser(Request $request, $id_user) {
         ]
     );
 
-    return redirect()->route('detailuserview')->with('success', 'Data telah Ditambahkan.');
+    return redirect()->route('detailuserview', ['id_user'=>$user])->with('success', 'Data telah Ditambahkan.');
 }
 
 

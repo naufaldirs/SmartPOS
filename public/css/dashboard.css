@@ -1,184 +1,253 @@
 body {
-  background-color: whitesmoke;
-  font-weight: 600; 
-}
-/* Sesuaikan dengan lebar dan tinggi yang diinginkan */
-.sidebar {
-        width: 100%;
-        height: 100%;
-        border-radius: 2px;
-        background: #DCB5A9; /* Warna sidebar */
-        margin: 0;
-        padding: 0;
-        position: fixed;
-        text-align: center; /* Pusatkan isi sidebar */
-      }
-      /* Stil tambahan sesuai kebutuhan */
-.sidebar .sidebar-title {
-        margin-bottom: 20px; /* Jarak antara judul dan link-menu */
-        margin-top: 50px;
-      }
-  
-.sidebar a {
-        text-decoration: none;
-        color: white; /* Warna teks link-menu */
-        display: block;
-        margin-bottom: 2px;
-        font-weight: 600; 
-        font-size: 20px;
-      }
-      /* Kode baru untuk header */
-header {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 17%;
-        /* Angka z-indeks yang lebih tinggi dari konten utama */
-        background-color: #EBCDC3; /* Sesuaikan dengan warna sidebar */
-        padding: 30px;
-      }
-  
-header h1 {
-        margin: 0;
-        color: white;
-      }
-  
-      /* Menggeser konten utama ke bawah untuk memberi ruang pada header yang fixed */
-main {
-        margin-top: 60px; /* Sesuaikan sesuai dengan tinggi header */
-      }
-
-.role {
-  background-color: #B48475; 
-  color: white; border-radius: 5px; 
-  margin: auto;
-}      
-
-      /* Stil untuk foto dan tabel data diri */
-.karyawan-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-  
-.karyawan-foto {
-        flex: 0 0 20%; /* Lebar foto */
-        margin-right: 20px;
-      }
-  
-.karyawan-foto img {
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-      }
-  
-.karyawan-tabel {
-        flex: 0 0 65%; /* Lebar tabel */
-      }
-  
-.karyawan-tabel table {
-        width: 100%;
-      }
-
-.tabel_background {
-  padding: 20px; /* Atur padding di sini */
-  background-color: white;
-  width: 100%;
-  height: 100%;
-  margin-top: 10px;
-}
-@media (max-width: 767px) {
+    background-color: whitesmoke;
+    font-weight: 600; 
+  }
+  /* Sesuaikan dengan lebar dan tinggi yang diinginkan */
   .sidebar {
-      display: none; /* Sembunyikan sidebar pada layar kecil */
-  }
+          width: 100%;
+          height: 100%;
+          border-radius: 2px;
+          background: #DCB5A9; /* Warna sidebar */
+          margin: 0;
+          padding: 0;
+          position: fixed;
+          text-align: center; /* Pusatkan isi sidebar */
+        }
+        /* Stil tambahan sesuai kebutuhan */
+  .sidebar .sidebar-title {
+          margin-bottom: 20px; /* Jarak antara judul dan link-menu */
+          margin-top: 50px;
+          
+        }
 
-  .main-content {
-      width: 100%;
-      padding: 0;
-  }
+        .btn {
+          color: black!important;
+        }
 
-  .main-content .container-sm {
-      padding: 0;
-  }
+.btn-primary  {
+    background-color: #EBCDC3!important;
+    border-color: #DCB5A9!important;
 
-  .main-content .container-sm .row {
-      flex-direction: column;
-  }
 }
-.th,td {
-  font-size: 14px;
-}
-input {
-  border-radius: 15px;
-  border: 1px solid #5A5959;
-  background: #FDFDFD; 
+  .sidebar a {
+          text-decoration: none;
+          display: block;
+          margin-bottom: 2px;
+          font-weight: 600; 
+          font-size: 20px;
+        }
+        /* Kode baru untuk header */
+  header {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 17%;
+          /* Angka z-indeks yang lebih tinggi dari konten utama */
+          background-color: #EBCDC3; /* Sesuaikan dengan warna sidebar */
+          padding: 30px;
+        }
+    
+  header h1 {
+          margin: 0;
+          color: black;
+        }
+    
+        /* Menggeser konten utama ke bawah untuk memberi ruang pada header yang fixed */
+  #main {
+          margin-top: 60px; /* Sesuaikan sesuai dengan tinggi header */
+          margin-left: 250px;
+        }
+  
+  .role {
+    background-color: #EBCDC3; 
+    color: black; 
+    border-radius: 5px; 
+    margin: auto;
+  }      
+  
+    /* Stil untuk foto dan tabel data diri */
 
-}
-        
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  width: 100%;
-  height: 100%;
-  border-radius: 2px;
-  background: #DCB5A9; /* Warna sidebar */
-  margin: 0;
-  padding: 0;
-  text-align: center; /* Pusatkan isi sidebar */
+  .karyawan-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+  .karyawan-foto {
+          flex: 0 0 20%; /* Lebar foto */
+          margin-right: 20px;
+        }
+    
+  .karyawan-foto img {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
+    
+  .karyawan-tabel {
+          flex: 0 0 65%; /* Lebar tabel */
+        }
+    
+  .karyawan-tabel table {
+          width: 100%;
+        }
+  
+  .tabel_background {
+    padding: 20px; /* Atur padding di sini */
+    background-color: white;
+    width: 100%;
+    overflow-x: auto;
+    height: 100%;
+    margin-top: 10px;
+  }
+  @media (max-width: 767px) {
+    .sidebar {
+        display: none; /* Sembunyikan sidebar pada layar kecil */
+    }
+  
+    .main-content {
+        width: 100%;
+        padding: 0;
+    }
+  
+    .main-content .container-sm {
+        padding: 0;
+    }
+  
+    .main-content .container-sm .row {
+        flex-direction: column;
+    }
+  }
+  .th,td {
+    font-size: 14px;
+  }
+  input {
+    border-radius: 15px;
+    border: 1px solid #5A5959;
+    background: #FDFDFD; 
+  
+  }
+ 
+    /* Add this CSS for FAQ styling */
+
+/* Style for the FAQ section */
+#faq {
+  padding: 50px 0;
 }
 
-.sidebar a {
-  text-decoration: none;
-  color: #f1f1f1;
+
+
+
+/* Style for the question headings */
+.panel-title a {
   display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
+  padding: 15px;
+  background-color: #EBCDC3;
   color: black;
-  background-color: #B48475;
-  border-radius: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+/* Style for the collapsed content */
+.panel-body {
+  background-color: #F5F5F5;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #B48475;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+/* Style for the active (open) question */
+.panel-title a[aria-expanded="true"] {
+  background-color: #D8B9AB;
 }
 
-.openbtn:hover {
-  background-color: #444;
+/* Optional: Add some hover effect */
+.panel-title a:hover {
+  background-color: #D8B9AB;
+  transition: background-color 0.3s ease;
 }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-  margin-left: auto;
-}
+/* Add this CSS for hover effect on the login button */
+.login:hover {
+          background-color: #D8B9AB;
+          color: white;
+          transition: background-color 0.3s ease;
+      }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-.tableku input select {
-  border-radius: 15px;
-  border: 1px solid #5A5959;
-  background: #FDFDFD; 
-  flex-shrink: 0; 
-}
+.footer {
+          background-color: #EBCDC3;
+          color: black;
+          text-align: center;
+          padding: 15px;
+          font-size: 14px;
+          font-weight: bold;
+      }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background: #DCB5A9; /* Warna sidebar */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Pusatkan isi sidebar */
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: black;
+    background-color: #B48475;
+    border-radius: 15px;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #B48475;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+  .tableku input select {
+    border-radius: 15px;
+    border: 1px solid #5A5959;
+    background: #FDFDFD; 
+    flex-shrink: 0; 
+  }

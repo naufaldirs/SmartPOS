@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->string('no_nota')->primary(); // Primary Key
             $table->date('tgl_nota');
-            $table->string('keterangan');
-            $table->string('pembayaran');
+            $table->string('pembayaran')->nullable()->default(NULL);
             $table->integer('total')->nullable()->default(NULL);
             $table->integer('bayar')->nullable()->default(NULL);
             $table->integer('kembali')->nullable()->default(NULL);

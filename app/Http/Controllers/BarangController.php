@@ -18,8 +18,9 @@ class BarangController extends Controller
     
     // Calculate the total sold for each sparepart
     $soldCounts = PenjualanDetail::groupBy('kd_sparepart')
-        ->selectRaw('kd_sparepart, SUM(kd_sparepart) as total_sold')
-        ->pluck('total_sold', 'kd_sparepart');
+    ->selectRaw('kd_sparepart, count(kd_sparepart) as total_sold')
+    ->orderBy('total_sold', 'desc') // Menambahkan metode orderBy
+    ->pluck('total_sold', 'kd_sparepart');
 
     
     return view('barang.informasi', [
@@ -62,13 +63,15 @@ class BarangController extends Controller
             // Redirect back with an error message if kd_sparepart already exists
             return redirect()->back()->with('error', 'Barang dengan Kode Sparepart tersebut sudah ada.');
         }
-
+        $harga = $request->input('harga');
+        $stok = $request->input('stok');
     // Create a new sparepart instance
     $sparepart = new Sparepart([
         'kd_sparepart' => $request->input('kd_sparepart'),
         'nama_sparepart' => $request->input('nama_sparepart'),
-        'harga' => $request->input('harga'),
-        'stok' => $request->input('stok'),
+        'harga' => $harga,
+        'stok' => $stok,
+        'total_harga' =>  $harga * $stok,
         // Add other fields as needed
     ]);
 
@@ -90,29 +93,24 @@ class BarangController extends Controller
     }
 
     public function ubahbarang(Request $request, $kd_sparepart) {
-                // Validasi data dari request jika diperlukan
+     // Validasi data dari request jika diperlukan
     $request->validate([
         'kd_sparepart' => 'required|string', // Assuming kd_sparepart is a string
         'nama_sparepart' => 'required|string',
         'harga' => 'required|numeric',
         'stok' => 'required|integer',
     ]);
+    $harga = $request->input('harga');
+    $stok = $request->input('stok');
     $sparepart = Sparepart::find($kd_sparepart);    
-        // Check if the kd_sparepart already exists
-        $existingSparepart = Sparepart::where('kd_sparepart', $request->input('kd_sparepart'))->first();
-
-        if ($existingSparepart) {
-            // Redirect back with an error message if kd_sparepart already exists
-            return redirect()->back()->with('error', 'Barang dengan Kode Sparepart tersebut sudah ada.');
-        }
      // Update data pengguna
      $sparepart->kd_sparepart = $request->input('kd_sparepart');
      $sparepart->nama_sparepart = $request->input('nama_sparepart');
-     $sparepart->harga = $request->input('harga');
-     $sparepart->stok = $request->input('stok');
+     $sparepart->harga = $harga;
+     $sparepart->stok = $stok;
+     $sparepart->total_harga =  $harga * $stok;
      // Simpan perubahan
      $sparepart->save();
- 
      // Redirect dengan pesan sukses
      return redirect()->route('barang')->with('success', 'Data Pengguna berhasil diupdate.');
     }

@@ -19,15 +19,14 @@
     </tr>
       <tr>
         <th>Produk</th>
-        <th>Harga</th>
-        <th>Stok Ditambahkan</th>
-      </tr>
+        <th>Harga</th>     
+       </tr>
     </thead>
     <tbody>
       <tr>
         <td><input type="text" class="form-control" name="nama_sparepart" value="{{ $sparepart->nama_sparepart }}" placeholder="Nama Barang"></td>
         <td> <input type="number" name="harga" value="{{ $sparepart->harga }}" class="form-control" id="" placeholder="Harga Satuan"></td>
-        <td><input type="number" name="stok" value="{{ $sparepart->stok }}" id="stok" class="form-control" placeholder="Stok"></td>
+    <input type="hidden" name="stok" value="{{ $sparepart->stok }}" id="stok" class="form-control" placeholder="Stok">
       </tr>
     </tbody>
   </table>

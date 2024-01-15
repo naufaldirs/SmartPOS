@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/history-pembayaran', [PenjualanController::class, 'history'])->name('historypembayaran')->middleware('role:admin,manajer');
     Route::get('/ubah-barang/{kd_sparepart}', [BarangController::class, 'ubahbarangview'])->name('ubahbarangview')->middleware('role:admin,manajer,kasir');
     Route::post('/ubah-barang/{kd_sparepart}', [BarangController::class, 'ubahbarang'])->name('ubahbarang')->middleware('role:admin,manajer,kasir');
+    Route::get('/tambah-stok/{kd_sparepart}', [BarangController::class, 'tambahstokview'])->name('tambahstokview')->middleware('role:admin,manajer,kasir');
+    Route::put('/tambah-stok/{kd_sparepart}', [BarangController::class, 'tambahstok'])->name('tambahstok')->middleware('role:admin,manajer,kasir');
     Route::get('/hapus-barang/{kd_sparepart}', [BarangController::class, 'hapusbarang'])->name('hapusbarang')->middleware('role:admin,manajer,kasir');
     Route::get('/tambah-barang', [BarangController::class, 'tambahbarangview'])->name('tambahbarangview')->middleware('role:admin,manajer,kasir');
     Route::post('/tambah-barang', [BarangController::class, 'tambahbarang'])->name('tambahbarang')->middleware('role:admin,manajer,kasir');

@@ -38,6 +38,32 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="alert alert-light m-auto" role="alert">
+                <h4>Rata Rata Akurasi</h4>
+                @php
+                    $totalMad = 0;
+                    $totalMse = 0;
+                    $totalMape = 0;
+                @endphp
+    
+                @foreach($forecastResults as $result)
+                    @php
+                        $totalMad += $result->mad;
+                        $totalMse += $result->mse;
+                        $totalMape += $result->mape;
+                    @endphp
+                @endforeach
+    
+                @php
+                    $averageMad = count($forecastResults) > 0 ? $totalMad / count($forecastResults) : 0;
+                    $averageMse = count($forecastResults) > 0 ? $totalMse / count($forecastResults) : 0;
+                    $averageMape = count($forecastResults) > 0 ? $totalMape / count($forecastResults) : 0;
+                @endphp
+    
+                <p>MAD: <span style="color: rgba(255, 206, 86, 1);">{{ round($averageMad,2) }}</span></p>
+                <p>MSE: <span style="color: rgba(75, 192, 192, 1);">{{ round($averageMse, 2) }}</span></p>
+                <p>MAPE: <span style="color: rgba(153, 102, 255, 1);">{{ number_format($averageMape  * 100, 2) . '%'  }}</span></p>
+            </div>
             <h3 style="text-align: center
             ">Grafik Trend</h3>
             <canvas id="myChart"></canvas>
@@ -58,9 +84,6 @@
                         <th>No</th>
                         <th>Periode</th>
                         <th>Forecast</th>
-                        <th>MAD</th>
-                        <th>MSE</th>
-                        <th>MAPE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,9 +91,6 @@
                         <td>{{ $nextForecast['no'] }}</td>
                         <td>{{ $nextForecast['periode'] }}</td>
                         <td>{{ $nextForecast['forecast'] }}</td>
-                        <td>{{ $nextForecast['mad'] }}</td>
-                        <td>{{ $nextForecast['mse'] }}</td>
-                        <td>{{ $nextForecast['mape'] }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -34,6 +34,7 @@ class PelangganController extends Controller
     }
 
     public function tambahpelanggankasir(Request $request) {
+        try {
         $request->validate([
             'nama_pelanggan' => 'required',
             'no_telp' => 'required',
@@ -42,7 +43,12 @@ class PelangganController extends Controller
 
         Pelanggan::create($request->all());
 
-        return redirect()->back()->with('success', 'Pelanggan created successfully.');
+        return redirect()->back()->with('success', 'Data Pelanggan Telah Masuk.');
+        }
+        catch (\Exception $e) {
+            // Jika terjadi kesalahan, redirect dengan pesan kesalahan
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
     public function ubahpelangganview($id_pelanggan) {

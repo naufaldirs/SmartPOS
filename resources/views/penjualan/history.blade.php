@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Detail User')
+@section('title', 'History Pembayaran')
 @section('content')
 <div class="container-sm tabel_background">
     <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
@@ -37,12 +37,35 @@
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
-            @for ($i = 1; $i <= ceil(count($historyPayments) / $historyPayments->perPage()); $i++)
+            {{-- Previous Page --}}
+            <li class="page-item {{ $historyPayments->currentPage() == 1 ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $historyPayments->previousPageUrl() }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+    
+            {{-- Numbered Pages --}}
+            @php
+                $startPage = max(1, $historyPayments->currentPage() - 2);
+                $endPage = min($historyPayments->lastPage(), $startPage + 4);
+            @endphp
+    
+            @for ($i = $startPage; $i <= $endPage; $i++)
                 <li class="page-item {{ $historyPayments->currentPage() == $i ? 'active' : '' }}">
-                    <a class="page-link" href="{{ url('/user/history-payments?page=' . $i) }}">{{ $i }}</a>
+                    <a class="page-link" href="{{ route('historypembayaran', ['page' => $i]) }}">{{ $i }}</a>
                 </li>
             @endfor
+    
+            {{-- Next Page --}}
+            <li class="page-item {{ $historyPayments->currentPage() == $historyPayments->lastPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $historyPayments->nextPageUrl() }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
         </ul>
     </nav>
+    
+    
+    
     
 @endsection

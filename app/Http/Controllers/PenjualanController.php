@@ -13,29 +13,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 class PenjualanController extends Controller
 {
-    public function history() {
-       // Fetch data from the database (assuming you have a User and Penjualan model)
-       $historyPayments = DB::table('pelanggan')
-       ->join('penjualan', 'pelanggan.id_pelanggan', '=', 'penjualan.id_pelanggan')
-       ->select('pelanggan.nama_pelanggan', 'pelanggan.no_telp', 'pelanggan.email', 'penjualan.tgl_nota')
-       ->get(); // Retrieve all records
-
-   // Manually paginate the results
-   $perPage = 5; // Adjust the number of items per page
-   $currentPage = request()->get('page', 1);
-   $offset = ($currentPage - 1) * $perPage;
-   $slicedHistoryPayments = array_slice($historyPayments->toArray(), $offset, $perPage);
-
-   $historyPayments = new LengthAwarePaginator(
-       $slicedHistoryPayments,
-       count($historyPayments),
-       $perPage,
-       $currentPage,
-       ['path' => url(route('historypembayaran'))]
-   );
-
-       return view('penjualan.history', compact('historyPayments'));
-    }
+public function history() {
+        $historyPayments = DB::table('penjualan')
+            ->join('pelanggan', 'pelanggan.id_pelanggan', '=', 'penjualan.id_pelanggan')
+            ->select('pelanggan.nama_pelanggan', 'pelanggan.no_telp', 'pelanggan.email', 'penjualan.tgl_nota')
+            ->paginate(5); // Use paginate method for automatic pagination
+    
+        return view('penjualan.history', compact('historyPayments'));
+}
     public function index(Request $request) {
 
         $limit = 5; // Jumlah data per halaman

@@ -6,12 +6,16 @@
     <h2 class="mb-4">Input Pelanggan</h2>
   </div>
   
-  <form action="{{ route('tambahpelanggan') }}" method="POST">
+  <form action="{{ route('tambahpelanggankasir') }}" method="POST">
     @csrf
     @if(session('success'))
       <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
+    @if($errors->has('error'))
+    <div class="alert alert-danger">
+        {{ $errors->first('error') }}
+    </div>
+  @endif
     <div class="form-group row">
       <label for="nama_pelanggan" class="col-sm-2 col-form-label">Nama Pelanggan</label>
       <div class="col-sm-10">

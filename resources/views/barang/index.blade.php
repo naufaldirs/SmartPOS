@@ -37,7 +37,8 @@
                     <td>{{ "Rp. " . number_format($sparepart->harga,  0,',','.') }}</td>
                     <td>
                         <a href="{{ route('ubahbarangview', ['kd_sparepart'=> $sparepart->kd_sparepart]) }}"><i class="fa fa-pencil-square" style="font-size:24px;color:blue"></i></a> |
-                        <a href="{{ route('hapusbarang', ['kd_sparepart' => $sparepart->kd_sparepart]) }}" onclick="return konfirmasi()"><i class="fa fa-window-close" style="font-size:24px;color:red"></i></a>
+                        <a href="{{ route('hapusbarang', ['kd_sparepart' => $sparepart->kd_sparepart]) }}" onclick="return konfirmasi()"><i class="fa fa-window-close" style="font-size:24px;color:red"></i></a>|
+                        <a href="{{ route('tambahstokview', ['kd_sparepart' => $sparepart->kd_sparepart]) }}"><i class="fa fa-plus-square" style="font-size:24px;color:green"></i></a>
                     </td>
                 </tr>
                 @endforeach

@@ -7,6 +7,7 @@ use App\Models\Sparepart;
 use Illuminate\Http\Request;
 use App\Models\PenjualanDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class BarangController extends Controller
 {
@@ -91,6 +92,58 @@ class BarangController extends Controller
         return view('barang.ubah', compact('sparepart'));
    
     }
+
+    public function tambahstokview($kd_sparepart) {
+
+        $sparepart = Sparepart::find($kd_sparepart);
+
+        if (!$sparepart) {
+            return redirect()->route('spareparts.index')->with('error', 'Barang tidak ditemukan.');
+        }
+
+        return view('barang.tambahstok', compact('sparepart'));
+   
+    }
+
+    public function tambahstok(Request $request, $kd_sparepart) {
+        try {
+            // Validasi input, jika diperlukan
+            $request->validate([
+                'kd_sparepart' => 'required',
+                'nama_sparepart' => 'required',
+                'harga' => 'required|numeric',
+                'stoklama' => 'required|numeric',
+                'stokbaru' => 'required|numeric',
+            ]);
+    
+            // Ambil data dari request
+            $harga = $request->input('harga');
+            $stoklama = $request->input('stoklama');
+            $stokbaru = $request->input('stokbaru');
+    
+            // Hitung total stok
+            $stok = $stoklama + $stokbaru;
+    
+            // Perbarui data menggunakan Eloquent
+            Sparepart::where('kd_sparepart', $kd_sparepart)->update([
+                'kd_sparepart' => $request->input('kd_sparepart'),
+                'nama_sparepart' => $request->input('nama_sparepart'),
+                'harga' => $harga,
+                'stok' => $stok,
+                'total_harga' => $harga * $stok,
+            ]);
+    
+            // Redirect dengan pesan sukses
+            return redirect()->route('barang')->with('success', 'Sparepart updated successfully.');
+    
+        } catch (QueryException $e) {
+            // Tangani kesalahan basis data
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan basis data: ' . $e->getMessage()]);
+        } catch (\Exception $e) {
+            // Tangani kesalahan umum
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
+       }
 
     public function ubahbarang(Request $request, $kd_sparepart) {
      // Validasi data dari request jika diperlukan
